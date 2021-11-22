@@ -20,7 +20,7 @@ class Dice(models.Model):
     sides = models.Charfield(max_length=3,
                              choices=SIDES)
     prize = models.FloatField(max_length=6)
-    #image =
+    image = models.ImageField(upload_to='dice_pictures/', blank=True, null=True)
     evaluation = models.ForeignKey()
 
 
