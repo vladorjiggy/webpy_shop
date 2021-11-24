@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Useradmin.apps.UseradminConfig',
-    'Reviews.apps.ReviewsConfig'
+    'Reviews.apps.ReviewsConfig',
+    'Shop.apps.ShopConfig',
+    'Order.apps.OrderConfig',
+    'User_Reported.apps.UserReportedConfig',
+    'Votes.apps.VotesConfig'
 ]
 
 MIDDLEWARE = [
