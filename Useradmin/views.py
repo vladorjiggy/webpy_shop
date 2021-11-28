@@ -47,3 +47,8 @@ class MyUserListView(generic.ListView):
     model = ShopUser
     context_object_name = 'all_myusers'
     template_name = 'myuser-list.html'
+
+class SingleUserView(generic.DetailView):
+    model = ShopUser
+    context_object_name = 'single_user'
+    template_name = 'single_user.html'

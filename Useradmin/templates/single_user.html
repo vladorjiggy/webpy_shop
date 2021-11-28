@@ -1,0 +1,33 @@
+{% extends 'home.html' %}
+
+{% block title %}User detail{% endblock %}
+
+{% block content %}
+<h2>Game detail</h2>
+
+<table>
+    <tr>
+        <td><b>Username</b></td>
+        <td>{{ single_user.user.username }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Vorname</b></td>
+        <td>{{ single_user.user.first_name }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Nachname:</b></td>
+        <td>{{ single_user.user.last_name }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Email:</b></td>
+        <td>{{ single_user.user.email }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Profilbild:</b></td>
+        <td><img src="{{ single_user.profile_picture.url }}" height="150" width="150"><br></td>
+    </tr>
+</table>
+
+<br>
+<a href="{% url 'myuser-list' %}">Alle Profile</a>
+{% endblock %}
