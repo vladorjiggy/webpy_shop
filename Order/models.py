@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from Shop.models import Dice
+from Dices.models import Dice
 
 
 class Order(models.Model):
@@ -10,10 +10,11 @@ class Order(models.Model):
                              related_query_name='product_ordered_by',
                              )
     product = models.ForeignKey(Dice,
-                             on_delete=models.CASCADE,
-                             related_name='product',
-                             related_query_name='product',
-                             )
+                                on_delete=models.CASCADE,
+                                related_name='product',
+                                related_query_name='product',
+                                )
+
     class Meta:
         verbose_name = 'Order'
         verbose_name_plural = 'Orders'

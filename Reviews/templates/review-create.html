@@ -1,0 +1,26 @@
+{% extends 'home.html' %}
+
+{% block title %}Add Game{% endblock %}
+
+{% block logged_in_content %}
+<h2>Add Game</h2>
+    <form method ="Post">
+        {% csrf_token %}
+
+        <label for="id_rating">Rating</label>
+        <select id="id_rating" type="text" name="rating">
+            <option value="1">ein Stern</option>
+            <option value="2">zwei Sterne</option>
+            <option value="3">drei Sterne</option>
+            <option value="4">vier Sterne</option>
+            <option value="5">fünf Sterne</option>
+        </select>
+        <br><br>
+         {{ form.title.label }}: {{ form.title }}<br><br>
+         {{ form.text.label }}: {{ form.text }}<br><br>
+
+
+       <!-- {{ form.as_p }}-->
+        <button type="submit">Add Game</button>
+    </form>
+{% endblock %}

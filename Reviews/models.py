@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-from Shop.models import Dice
+from Dices.models import Dice
+
 
 class Review(models.Model):
     # TODO: hier img dateien einfügen für Sterne?
@@ -12,7 +13,7 @@ class Review(models.Model):
         ('4', 'vier Sterne'),
         ('5', 'fünf Sterne')
     ]
-
+    title = models.CharField(max_length=50)
     text = models.CharField(max_length=1000)
     rating = models.CharField(
         max_length=1,
