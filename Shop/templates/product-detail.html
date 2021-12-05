@@ -1,0 +1,41 @@
+{% extends 'home.html' %}
+
+{% block title %}Product detail{% endblock %}
+
+{% block content %}
+<h2>Product detail</h2>
+
+<table>
+    <tr>
+        <td><b>Title:</b></td>
+        <td>{{ that_one_product.title }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Description:</b></td>
+        <td>{{ that_one_product.description }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Color:</b></td>
+        <td>{{ that_one_product.colour }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Sides:</b></td>
+        <td>{{ that_one_product.get_sides_display }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Prize:</b></td>
+        <td>{{ that_one_product.prize }}€<br></td>
+    </tr>
+    <tr>
+        <td><b>Image:</b>
+            <img src="{{ that_one_product.image.url }}" alt=""><br>
+        </td>
+        
+    </tr>
+</table>
+
+<br>
+<a href="{% url 'product-list' %}">Back to all products</a>
+<br><br>
+<a href={% url 'product-confirm_delete' that_one_product.id %}>delete Product</a><br>
+{% endblock %}

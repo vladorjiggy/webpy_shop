@@ -20,6 +20,3 @@ def get_myuser_from_user(user):
 class ShopUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='user_profile_pictures/', blank=True, null=True)
-
-    def __str__(self):
-        return self.user.first_name + ' ' + self.user.last_name + ' (' + str(self.date_of_birth) + ')'
