@@ -22,4 +22,8 @@ urlpatterns = [
     path('home/', TemplateView.as_view(template_name='home.html'), name='home'),
     path('useradmin/', include('Useradmin.urls')),
     path('useradmin/', include('django.contrib.auth.urls')),
+<<<<<<< Updated upstream
+=======
+    path('products/', include('Dices.urls')),
+>>>>>>> Stashed changes
 ]
