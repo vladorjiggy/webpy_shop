@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('Dices', '0001_initial'),
+        ('Dice', '0001_initial'),
     ]
 
     operations = [
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('text', models.CharField(max_length=1000)),
                 ('rating', models.CharField(choices=[('1', 'ein Stern'), ('2', 'zwei Sterne'), ('3', 'drei Sterne'), ('4', 'vier Sterne'), ('5', 'fünf Sterne')], default='1', max_length=1)),
                 ('timestamp', models.DateTimeField(default=django.utils.timezone.now)),
-                ('product_reviewed', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Dices.dice')),
+                ('product_reviewed', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Dice.dice')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

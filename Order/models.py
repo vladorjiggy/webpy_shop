@@ -1,6 +1,6 @@
 from django.db import models
 from Useradmin.models import get_myuser_from_user, ShopUser
-from Dices.models import Dice
+from Dice.models import Dice
 
 
 class Order(models.Model):
