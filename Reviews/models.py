@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from Useradmin.models import get_myuser_from_user, ShopUser
 from django.db import models
 from django.utils import timezone
 from Dices.models import Dice
@@ -22,7 +22,7 @@ class Review(models.Model):
     )
     timestamp = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(
-        User,
+        ShopUser,
         on_delete=models.CASCADE)
 
     product_reviewed = models.ForeignKey(

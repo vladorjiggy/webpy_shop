@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from Useradmin.models import get_myuser_from_user, ShopUser
 from Reviews.models import Review
 
 
 class User_reported(models.Model):
-    user = models.ForeignKey(User,
+    user = models.ForeignKey(ShopUser,
                              on_delete=models.CASCADE,
                              related_name='review_reported_by',
                              related_query_name='review_reported_by',
