@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-
 def get_myuser_from_user(user):
     '''
     :param user: Instance from User class

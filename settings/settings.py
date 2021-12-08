@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Useradmin.apps.UseradminConfig',
     'Reviews.apps.ReviewsConfig',
-    'Dice.apps.ShopConfig',
+    'Dices.apps.ShopConfig',
     'Order.apps.OrderConfig',
     'User_Reported.apps.UserReportedConfig',
     'Votes.apps.VotesConfig'

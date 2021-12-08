@@ -36,11 +36,11 @@
     <br>
     <span>{{ helpful_votes }}</span>
     <a href="{% url 'review-vote' that_one_Review.id 'helpful' %} }}">
-        <img src="{% static 'Dice/like.png' %}">
+        <img src="{% static 'Dices/like.png' %}">
     </a>
     <span>{{ not_helpful_votes }}</span>
     <a href="{% url 'review-vote' that_one_Review.id 'not_helpful' %} }}">
-        <img src="{% static 'Dice/thumb-down.png' %}">
+        <img src="{% static 'Dices/thumb-down.png' %}">
     </a>
 
 {% endblock %}

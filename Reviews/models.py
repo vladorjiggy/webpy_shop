@@ -1,7 +1,7 @@
 from Useradmin.models import get_myuser_from_user, ShopUser
 from django.db import models
 from django.utils import timezone
-from Dice.models import Dice
+from Dices.models import Dice
 from Votes.models import Vote
 
 
