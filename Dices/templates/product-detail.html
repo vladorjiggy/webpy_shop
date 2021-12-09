@@ -35,6 +35,10 @@
 </table>
 
 <br>
+<a href="{% url 'review_create' that_one_product.id %}">Write Reviews</a>
+<br>
+<a href="{% url 'reviews_product' that_one_product.id %}">Show Reviews</a>
+<br><br>
 <a href="{% url 'product-list' %}">Back to all products</a>
 <br><br>
 <a href={% url 'product-confirm_delete' that_one_product.id %}>delete Product</a><br>

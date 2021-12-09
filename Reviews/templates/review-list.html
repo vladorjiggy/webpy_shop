@@ -3,7 +3,7 @@
 {% block title %}Reviews list{% endblock %}
 
 {% block content %}
-    <h2>Games list</h2>
+    <h2>Reviews</h2>
     <ul>
     {% for game in all_the_games %}
         <a href="{% url 'review-detail' review.id %}"><b>{{ review.title }}</b></a><br>

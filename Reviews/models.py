@@ -13,7 +13,7 @@ class Review(models.Model):
         ('4', 'vier Sterne'),
         ('5', 'fünf Sterne')
     ]
-    title = models.CharField(max_length=50)
+    title = models.CharField(blank=True, max_length=50)
     text = models.CharField(max_length=1000)
     rating = models.CharField(
         max_length=1,
