@@ -42,6 +42,16 @@ def review_detail(request, **kwargs):
     return render(request, 'review-detail.html', context)
 
 
+<<<<<<< HEAD
+=======
+def vote(request, pk, helpful_or_not):
+    review = Review.objects.get(id=int(pk))
+    user = request.user
+    review.vote(user, helpful_or_not)
+    redirect('review-detail', pk=pk)
+
+
+>>>>>>> maren-development
 def review_delete(request, **kwargs):
     if request.method == 'POST':
         review_id = kwargs['pk']

@@ -1,5 +1,4 @@
 from django.db import models
-# Create your models here.
 
 
 class Dice(models.Model):
@@ -23,8 +22,8 @@ class Dice(models.Model):
 
 class Meta:
     ordering = ['sides', 'name']
-    verbose_name = 'Dice'
-    verbose_name = 'Dice'
+    verbose_name = 'Dices'
+    verbose_name = 'Dices'
 
 
 def __str__(self):
