@@ -33,5 +33,8 @@
     </tr>
 
     </table>
-
+ <br>
+    <a href="{% url 'reviews_product' that_one_Review.product_reviewed %}">Back to Review list</a>
+    <br>
+    <a href="{% url 'review_delete' that_one_Review.id %}">Delete Review</a>
 {% endblock %}
