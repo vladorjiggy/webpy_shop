@@ -14,8 +14,13 @@ class DiceForm(forms.ModelForm):
 
 class SearchForm(forms.ModelForm):
 
-    title = forms.CharField(required=False)
-
+    name = forms.CharField(required=False)
     class Meta:
         model = Dice
-        fields = ['title']
+        fields = ['name', 'sides']
+        widgets = {
+            'sides': forms.Select(choices=Dice.SIDES)
+        }
+    def __init__(self, *args, **kwargs):
+        super(SearchForm, self).__init__(*args, **kwargs)
+        self.fields['sides'].required = False

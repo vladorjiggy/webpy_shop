@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     {% block css %}{% endblock %}
     <title>{% block title %}Homepage Title{% endblock %}</title>
-    <br>
 </head>
 <body>
-    {% block content_title %}Base Title{% endblock %}
-    <br>
+    <header>
+        <div id="name_logo">
+            
+            {% block logo %}XXX{% endblock %} 
+            {% block content_title %}Base Title{% endblock %} 
+            
+        </div>
+        <div id="login">
+            {% block login %}{% endblock %} 
+        </div>
+               
+    </header>
+    
     {% block content %}Base Content{% endblock %}
 </body>
 </html>

@@ -7,20 +7,29 @@
 {% endblock %}
 
 {% block title %}Dice Shop{% endblock %}
-
-{% block content_title %}DICE SHOP{% endblock %}
-
-{% block content %}
+{% block logo %}<img id="logo" src="{% static 'Dice/246569.png' %}" alt="">{% endblock %}
+{% block content_title %}DICE DIR EINEN{% endblock %}
+{% block login %}
     {% if user.is_authenticated %}
         {% block logged_in_content %}
-            <p>Hi {{ user.username }}!</p>
-            <p><a href="{% url 'product-list' %}">See all Dice</a></p>
+            <p id="username">Hi {{ user.username }}!</p>
             <a href="{% url 'logout' %}">logout</a>
         {% endblock %}
     {% else %}
         {% block not_logged_in_content %}
-            <p>You are not logged in</p>
-            <a href="{% url 'login' %}">login</a>
+            <a  href="{% url 'login' %}">login</a>
         {% endblock %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <br>
+    <p><a href="{% url 'product-list' %}">See all Dice</a></p>
+    {% block search %}
+         
+    {% endblock %}
+       
+    
     {% endif %}
 {% endblock %}
