@@ -11,3 +11,11 @@ class DiceForm(forms.ModelForm):
         widgets = {
             'sides': forms.Select(choices=Dice.SIDES),
         }
+
+class SearchForm(forms.ModelForm):
+
+    title = forms.CharField(required=False)
+
+    class Meta:
+        model = Dice
+        fields = ['title']
