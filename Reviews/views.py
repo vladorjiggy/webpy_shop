@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from Dices.models import Dice
 from Reviews.forms import ReviewForm
 from Reviews.models import Review
-# Create your views here.
+from Useradmin.models import get_myuser_from_user
+import logging
 
 
 def review_list_1(request, **kwargs):
@@ -22,8 +24,11 @@ def review_create(request, **kwargs):
     if request.method == 'POST':
         product_id = kwargs['pk']
         form = ReviewForm(request.POST)
-        form.instance.user = request.user
-        form.instance.product_reviewed = product_id
+        form.instance.user = get_myuser_from_user(request.user)
+        form.instance.product_reviewed = Dice.objects.get(id=product_id)
+        logging.basicConfig(level=logging.DEBUG)
+        logging.debug('is valid', form.is_valid())
+        logging.debug(form.errors)
         if form.is_valid():
             form.save()
         else:

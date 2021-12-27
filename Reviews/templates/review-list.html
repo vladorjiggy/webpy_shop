@@ -5,11 +5,9 @@
 {% block content %}
     <h2>Reviews</h2>
     <ul>
-    {% for game in all_the_games %}
+    {% for review in all_the_Reviews %}
         <a href="{% url 'review-detail' review.id %}"><b>{{ review.title }}</b></a><br>
-
-        {{ game.text }}<br>
-        {{ game.get_rating_display }}
+        {{ form.as_p }}
         <br>
         <br>
     {% endfor %}

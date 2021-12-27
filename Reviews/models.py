@@ -13,7 +13,7 @@ class Review(models.Model):
         ('4', 'vier Sterne'),
         ('5', 'fünf Sterne')
     ]
-    title = models.CharField(blank=True, max_length=50)
+    #title = models.CharField(blank=True, max_length=50)
     text = models.CharField(max_length=1000)
     rating = models.CharField(
         max_length=1,
@@ -23,11 +23,13 @@ class Review(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(
         ShopUser,
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE,
+        )
 
     product_reviewed = models.ForeignKey(
         Dice,
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE,
+        )
 
 
 def get_helpful_votes(self):

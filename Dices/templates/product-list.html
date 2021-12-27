@@ -19,6 +19,7 @@
         
     {% endfor %}
 </ul>
-
-<a href={% url 'product-create' %}>Add a new Product</a><br>
+{% if user_is_authorized %}
+    <a href={% url 'product-create' %}>Add a new Product</a><br>
+{% endif %}
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block title %}Add Game{% endblock %}
 
 {% block logged_in_content %}
-<h2>Add Game</h2>
+<h2>Add Review</h2>
     <form method ="Post">
         {% csrf_token %}
 
@@ -21,6 +21,6 @@
 
 
        <!-- {{ form.as_p }}-->
-        <button type="submit">Add Game</button>
+        <button type="submit">Add Review</button>
     </form>
 {% endblock %}

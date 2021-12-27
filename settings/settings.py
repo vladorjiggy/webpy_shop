@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'Dices.apps.ShopConfig',
     'Order.apps.OrderConfig',
     'User_Reported.apps.UserReportedConfig',
-    'Votes.apps.VotesConfig'
+    'Votes.apps.VotesConfig',
+    'Customerservice.apps.CustomerserviceConfig'
 ]
 
 MIDDLEWARE = [
