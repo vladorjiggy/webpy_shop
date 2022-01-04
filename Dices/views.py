@@ -48,7 +48,7 @@ class ProductCreateView(CreateView):
         context['user_is_authorized'] = user_is_authorized
         return context
 
-    '''def upload_file(self, request, pk):
+    def upload_file(self, request, pk):
         if request.method == 'POST':
             form = DiceForm(request.POST, request.FILES)
             if form.is_valid():
@@ -60,7 +60,7 @@ class ProductCreateView(CreateView):
             
         else:
             form = DiceForm()
-        return render(request, 'product-detail.html', {'form': form})'''
+        return render(request, 'product-detail.html', {'form': form})
 
 '''
     def form_valid(self, form):

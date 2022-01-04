@@ -43,15 +43,22 @@ def review_create(request, **kwargs):
 def review_detail(request, **kwargs):
     review_id = kwargs['pk']
     that_one_review = Review.objects.get(id=review_id)
-    context = {'that_one_Review': that_one_review}
+    product_reviewed = Dice.objects.get(id=that_one_review.product_reviewed.id)
+    product_reviewed_id = product_reviewed.id
+    context = {'that_one_Review': that_one_review,
+               'product_reviewed_id': product_reviewed_id,
+               'helpful_votes': that_one_review.get_helpful_count(),
+               'not_helpful_votes': that_one_review.get_not_helpful_count()}
     return render(request, 'review-detail.html', context)
 
 
-def vote(request, pk, helpful_or_not):
+def vote(request, pk, helpful_or_not: str):
+    logging.basicConfig(level=logging.DEBUG)
+    logging.debug('helpful or not', helpful_or_not)
     review = Review.objects.get(id=int(pk))
     user = request.user
     review.vote(user, helpful_or_not)
-    redirect('review-detail', pk=pk)
+    return redirect('review_detail', pk=pk)
 
 
 def review_delete(request, **kwargs):
