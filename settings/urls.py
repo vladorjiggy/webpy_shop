@@ -28,6 +28,7 @@ urlpatterns = [
     path('products/', include('Dices.urls')),
     path('cart/', include('Shoppingcart.urls')),
 
+    path('customerservice/', include('Customerservice.urls'))
 ]
 
 

@@ -5,10 +5,12 @@ from .models import Review
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = {'text', 'rating', 'timestamp', 'user', 'product_reviewed'}
+        fields = {'title', 'text', 'rating'}
         widgets = {
+            'rating': forms.Select(choices=Review.RATING),
             'timestamp': forms.HiddenInput(),
             'user': forms.HiddenInput(),
-            'product_reviewed': forms.HiddenInput(),
-            'rating': forms.Select(choices=Review.RATING)
+            'product_reviewed': forms.HiddenInput()
         }
+
+

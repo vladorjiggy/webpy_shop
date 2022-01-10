@@ -1,4 +1,3 @@
-from datetime import date, datetime
 from django.contrib.auth.models import User
 from django.db import models
 from Shoppingcart.models import ShoppingCart
@@ -19,12 +18,20 @@ def get_myuser_from_user(user):
     return myuser
 
 
-class ShopUser(AbstractBaseUser):
-    REQUIRED_FIELDS = ('user',)
-    USERNAME_FIELD = 'user'
+class ShopUser(models.Model):
+    TYPES = [
+        ('SU', 'Superuser'),
+        ('CS', 'Customerservice'),
+        ('U', 'User')
+    ]
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    type = models.CharField(max_length=2, choices=TYPES, default='U')
     profile_picture = models.ImageField(upload_to='user_profile_pictures/', blank=True, null=True)
 
+    def is_authorized(self):
+        return is_customerservice_or_superuser(self)
+    
     def count_shopping_cart_items(self):
         count = 0
         if self.is_authenticated:
@@ -34,3 +41,10 @@ class ShopUser(AbstractBaseUser):
                 count = shopping_cart.get_number_of_items()
 
         return count
+
+
+def is_customerservice_or_superuser(self):
+    if self.type == 'SU' or self.type == 'CS':
+        return True
+    else:
+        return False

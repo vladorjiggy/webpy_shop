@@ -18,6 +18,7 @@ class Dice(models.Model):
                              choices=SIDES)
     prize = models.FloatField(max_length=6)
     image = models.ImageField(upload_to='dice_pictures/', blank=True, null=True)
+    product_info = models.FileField(upload_to='dice_info/', blank=True, null=True)
 
 
 class Meta:

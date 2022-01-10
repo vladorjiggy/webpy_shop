@@ -10,13 +10,18 @@
     {% for product in all_products %}
     <li>
         <a href="{{ product.id }}/">{{product.name}}</a><br>
-       
     </li>
        
         
     {% endfor %}
 </ul>
+<<<<<<< HEAD
 
 <a href={% url 'product-create' %}>Add a new Product</a><br>
 <a href={% url 'product-search' %}>Search the books</a>
+=======
+{% if user_is_authorized %}
+    <a href={% url 'product-create' %}>Add a new Product</a><br>
+{% endif %}
+>>>>>>> maren-development
 {% endblock %}

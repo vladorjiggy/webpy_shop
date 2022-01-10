@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'User_Reported.apps.UserReportedConfig',
     'Votes.apps.VotesConfig',
     'Shoppingcart.apps.ShoppingcartConfig'
+    'Customerservice.apps.CustomerserviceConfig'
 ]
 
 MIDDLEWARE = [

@@ -1,10 +1,5 @@
 from django.db import models
-
-import Reviews.models
-from Useradmin.models import get_myuser_from_user, ShopUser
-#from Reviews.models import Review
-#from django.db.models import get_model
-#MyModel = get_model('app_name', 'ModelName')
+from Useradmin.models import ShopUser
 
 
 class Vote(models.Model):
@@ -14,8 +9,9 @@ class Vote(models.Model):
     ]
 
     helpful_or_not = models.CharField(max_length=1,
-                                      choices=VOTE_TYPES)
-    
+                                      choices=VOTE_TYPES,
+                                      default='H')
+
     user = models.ForeignKey(ShopUser,
                              on_delete=models.CASCADE,
                              related_name='vote_created_by',
@@ -23,10 +19,10 @@ class Vote(models.Model):
                              )
 
     review = models.ForeignKey('Reviews.Review',
-                             on_delete=models.CASCADE,
-                             related_name='vote_created_for_review',
-                             related_query_name='vote_created_for_review',
-                             )
+                               on_delete=models.CASCADE,
+                               related_name='vote_created_for_review',
+                               related_query_name='vote_created_for_review',
+                               )
 
     class Meta:
         verbose_name = 'Vote'
