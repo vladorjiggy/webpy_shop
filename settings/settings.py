@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'Order.apps.OrderConfig',
     'User_Reported.apps.UserReportedConfig',
     'Votes.apps.VotesConfig',
-    'Shoppingcart.apps.ShoppingcartConfig'
+    'Shoppingcart.apps.ShoppingcartConfig',
     'Customerservice.apps.CustomerserviceConfig'
 ]
 
