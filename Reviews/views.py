@@ -24,15 +24,22 @@ def review_create(request, **kwargs):
     if request.method == 'POST':
         product_id = kwargs['pk']
         form = ReviewForm(request.POST)
-        form.instance.user = get_myuser_from_user(request.user)
+        user = get_myuser_from_user(request.user)
+        form.instance.user = user
         form.instance.product_reviewed = Dice.objects.get(id=product_id)
-        logging.basicConfig(level=logging.DEBUG)
-        logging.debug('is valid', form.is_valid())
-        logging.debug(form.errors)
-        if form.is_valid():
-            form.save()
-        else:
+
+        review = Review.objects.get(user=user)
+        if review:
             pass
+        # if user im product
+        else: 
+            logging.basicConfig(level=logging.DEBUG)
+            logging.debug('is valid', form.is_valid())
+            logging.debug(form.errors)
+            if form.is_valid():
+                form.save()
+            else:
+                pass
         return redirect('product-detail', product_id)
     else:
         form = ReviewForm()

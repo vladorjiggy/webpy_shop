@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from Reviews import views
 
 urlpatterns = [
     path('review-editdelete/<int:pk>/', views.review_edit_delete, name='review_edit_delete'),
