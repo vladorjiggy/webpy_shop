@@ -22,6 +22,18 @@
     {% endif %}
 {% endblock %}
 
+{% block header %}
+    <a style="float: right;" href="{% url 'shopping-cart-show' %}">
+        Shopping Cart (
+        {% if user.is_authenticated %}
+            {{ request.user.count_shopping_cart_items }}
+        {% else %}
+            0
+        {% endif %}
+        )
+    </a>
+{% endblock %}
+
 {% block content %}
     {% if user.is_authenticated %}
     <br>

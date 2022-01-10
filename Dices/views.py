@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, DeleteView
 from .forms import DiceForm, SearchForm
 from .models import Dice
+from Shoppingcart.models import ShoppingCart
 
 
 class ProductListView(ListView):
@@ -15,6 +16,14 @@ class ProductDetailView(DetailView):
     model = Dice
     context_object_name = 'that_one_product'  # Default: book
     template_name = 'product-detail.html'  # Default: book_detail.html
+    def get_queryset(self, *args, **kwargs):
+        return Dice.objects.filter(id=self.kwargs['pk']) # evtl self
+
+    def form_valid(self, form):
+        # Add to shopping cart
+        if self.request.method == 'POST':
+            myuser = self.request.user
+            ShoppingCart.add_item(myuser, self.get_queryset())
 
 
 class ProductCreateView(CreateView):
