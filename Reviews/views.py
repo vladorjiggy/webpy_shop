@@ -24,12 +24,12 @@ def review_create(request, **kwargs):
     if request.method == 'POST':
         product_id = kwargs['pk']
         form = ReviewForm(request.POST)
-        user = get_myuser_from_user(request.user)
+        user = request.user
         form.instance.user = user
         form.instance.product_reviewed = Dice.objects.get(id=product_id)
 
-        review = Review.objects.get(user=user)
-        if review:
+        #review = Review.objects.get(user=user)
+        if 1 == 0:
             pass
         # if user im product
         else: 
@@ -72,7 +72,7 @@ def review_delete(request, **kwargs):
     if request.method == 'POST':
         review_id = kwargs['pk']
         Review.objects.filter(id=review_id).delete()
-        return redirect('review-list_2')
+        return redirect('reviews_product', pk=review_id)
     else:
         review_id = kwargs['pk']
         that_one_review = Review.objects.get(id=review_id)

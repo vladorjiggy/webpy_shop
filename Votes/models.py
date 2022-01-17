@@ -1,6 +1,6 @@
 from django.db import models
 from Useradmin.models import ShopUser
-
+from django.conf import settings
 
 class Vote(models.Model):
     VOTE_TYPES = [
@@ -12,7 +12,7 @@ class Vote(models.Model):
                                       choices=VOTE_TYPES,
                                       default='H')
 
-    user = models.ForeignKey(ShopUser,
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE,
                              related_name='vote_created_by',
                              related_query_name='vote_created_by',

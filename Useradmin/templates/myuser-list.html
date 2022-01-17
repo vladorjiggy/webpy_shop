@@ -4,16 +4,14 @@
 
 {% block content %}
 <h2>Users list</h2>
+
+
 <ul>
     {% for myuser in all_myusers %}
-    <li>
-        <h6><a href="{{ myuser.user.id }}/">{{myuser.user.username}}</a></h6>
-        
-        <p>{{ myuser.user.first_name }} {{ myuser.user.last_name }}</p>
-         <br>
+        <a href="{{ myuser.id }}/">{{ myuser.first_name }} {{ myuser.last_name }}</a><br>
         <img src="{{ myuser.profile_picture.url }}" height="150" width="150"><br>
+        
         <br>
-    </li>
     {% endfor %}
 </ul>
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 
 class Dice(models.Model):
     SIDES = [
@@ -19,7 +19,11 @@ class Dice(models.Model):
     prize = models.FloatField(max_length=6)
     image = models.ImageField(upload_to='dice_pictures/', blank=True, null=True)
     product_info = models.FileField(upload_to='dice_info/', blank=True, null=True)
-
+    superuser = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE,
+                             related_name='product_created_by',
+                             related_query_name='product_created_by',
+                             )
 
 class Meta:
     ordering = ['sides', 'name']

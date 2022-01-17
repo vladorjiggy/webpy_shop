@@ -10,6 +10,7 @@ class DiceForm(forms.ModelForm):
         model = Dice
         fields = ['name', 'description', 'colour', 'sides', 'prize', 'image', 'product_info']
         widgets = {
+            'superuser': forms.HiddenInput(),
             'sides': forms.Select(choices=Dice.SIDES),
         }
 

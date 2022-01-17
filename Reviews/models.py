@@ -4,7 +4,7 @@ from django.utils import timezone
 from Dices.models import Dice
 from Votes.models import Vote
 import logging
-
+from django.conf import settings
 
 class Review(models.Model):
     RATING = [
@@ -23,7 +23,7 @@ class Review(models.Model):
     )
     timestamp = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(
-        ShopUser,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         )
 
@@ -33,7 +33,7 @@ class Review(models.Model):
         )
 
     def vote(self, user, helpful_or_not):
-        myuser = get_myuser_from_user(user)
+        myuser = user
         h_or_n = 'H'
         if helpful_or_not == 'not_helpful':
             h_or_n = 'N'
