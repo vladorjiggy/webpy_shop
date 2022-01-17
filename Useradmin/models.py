@@ -1,9 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
 from Shoppingcart.models import ShoppingCart
-
+from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser
-
+from django.contrib.auth.models import UserManager
 
 def get_myuser_from_user(user):
     '''
@@ -19,16 +19,20 @@ def get_myuser_from_user(user):
 
 
 class ShopUser(models.Model):
+    
     TYPES = [
         ('SU', 'Superuser'),
         ('CS', 'Customerservice'),
         ('U', 'User')
     ]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     type = models.CharField(max_length=2, choices=TYPES, default='U')
     profile_picture = models.ImageField(upload_to='user_profile_pictures/', blank=True, null=True)
-
+    REQUIRED_FIELDS = ()
+    USERNAME_FIELD = 'user'
+    is_authenticated = User.is_authenticated
+    is_anonymous = False
     def is_authorized(self):
         return is_customerservice_or_superuser(self)
     
@@ -41,7 +45,7 @@ class ShopUser(models.Model):
                 count = shopping_cart.get_number_of_items()
 
         return count
-
+    objects = UserManager()
 
 def is_customerservice_or_superuser(self):
     if self.type == 'SU' or self.type == 'CS':
