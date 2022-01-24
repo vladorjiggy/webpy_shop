@@ -7,8 +7,7 @@
 {% endblock %}
 
 {% block title %}Dice Shop{% endblock %}
-{% block logo %}<img id="logo" src="{% static 'Dice/246569.png' %}" alt="">{% endblock %}
-{% block content_title %}DICE DIR EINEN{% endblock %}
+
 {% block login %}
     {% if user.is_authenticated %}
         {% block logged_in_content %}
@@ -17,10 +16,21 @@
         {% endblock %}
     {% else %}
         {% block not_logged_in_content %}
-            <a  href="{% url 'login' %}">login</a>
+            <a  href="{% url 'login' %}">Login</a>
+            <br>
+            <a  href="{% url 'signup' %}">Sign Up</a>
         {% endblock %}
     {% endif %}
 {% endblock %}
+
+{% block logo %}<img id="logo" src="{% static 'Dice/246569.png' %}" alt="">{% endblock %}
+{% block content_title %}
+    <br>
+    DICE DIR EINEN
+    <h1>DICE, DICE, NICER!</h1>
+{% endblock %}
+
+
 
 {% block header %}
     <a style="float: right;" href="{% url 'shopping-cart-show' %}">
@@ -35,13 +45,9 @@
 {% endblock %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-    <br>
     <p><a href="{% url 'product-list' %}">See all Dice</a></p>
+    <br>
     {% block search %}
          
     {% endblock %}
-       
-    
-    {% endif %}
 {% endblock %}
