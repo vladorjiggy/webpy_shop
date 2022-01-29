@@ -3,7 +3,6 @@ from django.db import models
 from Shoppingcart.models import ShoppingCart
 from django.conf import settings
 
-
 def get_myuser_from_user(user):
     '''
     :param user: Instance from User class
@@ -16,7 +15,6 @@ def get_myuser_from_user(user):
         myuser = myuser_query_set.first()
     return myuser
 
-
 class ShopUser(AbstractUser):
     TYPES = [
         ('SU', 'Superuser'),
@@ -25,7 +23,8 @@ class ShopUser(AbstractUser):
     ]
     profile_picture = models.ImageField(upload_to='user_profile_pictures/', blank=True, null=True)
     type = models.CharField(max_length=2, choices=TYPES, default='U')
-
+    
+    
     def count_shopping_cart_items(self):
         count = 0
         if self.is_authenticated:
