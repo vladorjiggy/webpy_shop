@@ -25,6 +25,7 @@
  #login {
      display: flex;
      justify-content: center;
+     margin: 10px;
  }
 
  #login>p {
@@ -40,7 +41,13 @@
      align-items: flex-end;
      justify-content: center;
  }
-
+.header_profile_img{
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
 
 
 
@@ -57,7 +64,6 @@
  }
 
  .product_info {
-     background-color: aliceblue;
      color: black;
      padding: 10px;
      display: flex;
@@ -74,7 +80,7 @@
 
  .product_prize {
      color: #993300;
-     font-size: 22px;
+     font-size: 25px !important;
  }
  .product_info_fontsize{
      font-size: 22px;
@@ -96,4 +102,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+ }
+ .searchform > form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ .searchform{
+     width: 40%;
+     margin: auto;
  }

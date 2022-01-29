@@ -101,9 +101,9 @@ def product_search(request):
 
         form_in_function_based_view = SearchForm()
         context = {'form': form_in_function_based_view,
-                   'products_found': products_found,
+                   'all_products': products_found,
                    'show_results': True}
-        return render(request, 'product-search.html', context)
+        return render(request, 'product-list.html', context)
 
     else:
         form_in_function_based_view = SearchForm()

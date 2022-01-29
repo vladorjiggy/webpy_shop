@@ -6,15 +6,37 @@
 
 {% block content %}
 <h1 style="text-align: center;">Alle Produkte</h1>
+<div class="searchform">
+    <form method="POST" action="/products/search/">
+        
+        <input class="form-control" type="text" name="name" placeholder="Name">
+
+        <select name="sides" class="custom-select">
+            <option selected value="">Seitenanzahl</option>
+            <option value="D4">4 Seiten</option>
+            <option value="D6">6 Seiten</option>
+            <option value="D8">8 Seiten</option>
+            <option value="D10">10 Seiten</option>
+            <option value="D12">12 Seiten</option>
+            <option value="D20">20 Seiten</option>
+          </select>
+        {% csrf_token %}
+        <button type="submit" class="btn btn-light"><i class="fa fa-search"></i></button>
+        
+        
+    </form>
+    <a href="/products/show">
+        <button type="button" class="btn btn-danger btn-block">Reset</button>
+    </a>
+</div>
 <div id="product_list">
     {% for product in all_products %}
-    <a class="single_product_link" href="{{ product.id }}/">
-        <div class="single_product">
-        <div>{{product.reviews}}</div>
-            <img src="{{ product.image.url }}" height="300px" width="100%" alt=""><br>
-            <div class="product_info">
+    <a class="single_product_link" href="/products/show/{{ product.id }}/">
+        <div class="single_product card">
+            <img class="card-img-top" src="{{ product.image.url }}" height="300px" width="100%" alt=""><br>
+            <div class="product_info card-body">
                 <div class="product_info_leftside">
-                    <p class="product_prize product_info_fontsize">€{{product.prize}}0</p>
+                    <p class="product_prize card-title">€{{product.prize}}0</p>
                     <p class="product_info_fontsize">{{product.name}}</p>
                 </div>
                 <div class="product_info_rightside">
@@ -32,7 +54,7 @@
         
     {% endfor %}
 </div>
-
-<a href={% url 'product-create' %}>Add a new Product</a><br>
-<a href={% url 'product-search' %}>Search the books</a>
+{% if user.is_authorized %}
+<a href={% url 'product-create' %}>Add a new Product</a>
+{% endif %}
 {% endblock %}
