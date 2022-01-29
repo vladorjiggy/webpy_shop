@@ -60,11 +60,19 @@ def review_detail(request, **kwargs):
 
 
 def vote(request, pk, helpful_or_not: str):
+    
     logging.basicConfig(level=logging.DEBUG)
     logging.debug('helpful or not', helpful_or_not)
     review = Review.objects.get(id=int(pk))
-    user = request.user
-    review.vote(user, helpful_or_not)
+    allVotes = review.get_all_votes()
+    voted = False
+    for votes in allVotes:
+        if(votes.user == request.user):
+            print(votes.user, helpful_or_not)
+            voted = True
+    if(voted == False):
+        user = request.user
+        review.vote(user, helpful_or_not)
     return redirect('review_detail', pk=pk)
 
 

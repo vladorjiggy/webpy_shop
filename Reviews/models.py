@@ -58,6 +58,10 @@ class Review(models.Model):
         logging.basicConfig(level=logging.DEBUG)
         logging.debug('not helpful')
         return len(self.get_not_helpful_votes())
+    
+    def get_all_votes(self):
+        votes = Vote.objects.filter(review=self)
+        return votes
 
 
 
