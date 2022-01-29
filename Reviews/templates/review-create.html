@@ -4,7 +4,7 @@
 
 {% block logged_in_content %}
 <h2>Add Review</h2>
-    <form method ="Post">
+    <form method ="Post" enctype="multipart/form-data">
         {% csrf_token %}
 
         <label for="id_rating">Rating</label>
