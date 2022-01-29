@@ -61,7 +61,7 @@ class Review(models.Model):
     
     def get_all_votes(self):
         votes = Vote.objects.filter(review=self)
-        return votes
+        return votes 
 
 
 
