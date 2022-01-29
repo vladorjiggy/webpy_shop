@@ -68,7 +68,7 @@ def vote(request, pk, helpful_or_not: str):
     voted = False
     for votes in allVotes:
         if(votes.user == request.user):
-            print(votes.user, helpful_or_not)
+            print(votes.helpful_or_not, helpful_or_not)
             voted = True
     if(voted == False):
         user = request.user

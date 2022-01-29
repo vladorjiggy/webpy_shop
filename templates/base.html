@@ -14,12 +14,19 @@
             {% block content_title %}Base Title{% endblock %} 
             
         </div>
-        <div id="login">
-            {% block login %}{% endblock %} 
+        <div>
+            
+            <div id="login">
+                {% block login %}{% endblock %} 
+            </div>
+            {% block cart %}{% endblock %} 
         </div>
                
     </header>
+    <main>
+        {% block content %}Base Content{% endblock %}
+    </main>
     
-    {% block content %}Base Content{% endblock %}
+    
 </body>
 </html>

@@ -8,6 +8,7 @@
 
 {% block title %}Dice Shop{% endblock %}
 
+
 {% block login %}
     {% if user.is_authenticated %}
         {% block logged_in_content %}
@@ -23,25 +24,33 @@
     {% endif %}
 {% endblock %}
 
+{% block cart %}
+<a style="float: right;" href="{% url 'shopping-cart-show' %}">
+    Shopping Cart (
+    {% if user.is_authenticated %}
+        {{ request.user.count_shopping_cart_items }}
+    {% else %}
+        0
+    {% endif %}
+    )
+</a>
+
+{% endblock %}
+
 {% block logo %}<img id="logo" src="{% static 'Dice/246569.png' %}" alt="">{% endblock %}
 {% block content_title %}
+<div id="title">
     <br>
     DICE DIR EINEN
     <h1>DICE, DICE, NICER!</h1>
+</div>
+    
 {% endblock %}
 
 
 
 {% block header %}
-    <a style="float: right;" href="{% url 'shopping-cart-show' %}">
-        Shopping Cart (
-        {% if user.is_authenticated %}
-            {{ request.user.count_shopping_cart_items }}
-        {% else %}
-            0
-        {% endif %}
-        )
-    </a>
+    
 {% endblock %}
 
 {% block content %}

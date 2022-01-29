@@ -1,5 +1,4 @@
  body {
-     margin: 100px;
      background-color: black;
      color: #993300;
  }
@@ -7,7 +6,30 @@
  h1 {
      color: #747474;
  }
-
+main{
+    margin: 50px;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
  #logo {
-     margin: 40px;
+     width: 60px;
+     margin: 20px 0;
+ }
+ #login{
+    display: flex;
+    justify-content: center;
+ }
+ #login > p{
+     margin-right: 10px;
+ }
+ #title{
+    margin-left: 10px;
+ }
+ #name_logo{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
  }
