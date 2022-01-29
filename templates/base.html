@@ -19,7 +19,10 @@
             <div id="login">
                 {% block login %}{% endblock %} 
             </div>
-            {% block cart %}{% endblock %} 
+            
+            {% if user.is_authenticated %}
+                {% block cart %}{% endblock %} 
+            {% endif %}
         </div>
                
     </header>
@@ -27,6 +30,8 @@
         {% block content %}Base Content{% endblock %}
     </main>
     
-    
+    <footer>
+        Das ist der Footer
+    </footer>
 </body>
 </html>

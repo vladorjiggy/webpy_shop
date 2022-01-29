@@ -63,7 +63,7 @@ class Review(models.Model):
         votes = Vote.objects.filter(review=self)
         return votes 
 
-
+    
 
 
 

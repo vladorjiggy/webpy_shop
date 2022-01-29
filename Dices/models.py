@@ -12,7 +12,7 @@ class Dice(models.Model):
     ]
 
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=300)
+    description = models.CharField(max_length=1000)
     colour = models.CharField(max_length=50)
     sides = models.CharField(max_length=3,
                              choices=SIDES)

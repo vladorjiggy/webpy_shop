@@ -1,3 +1,1 @@
-signup
-products anzeigen auch wenn man nicht eingeloggt ist
-pdf generieren und download -> übung
+wie loggen sich Angestellte ein?

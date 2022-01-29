@@ -5,17 +5,33 @@
 {% block title %}Products list{% endblock %}
 
 {% block content %}
-<h2>Products list</h2>
-<ul>
+<h1 style="text-align: center;">Alle Produkte</h1>
+<div id="product_list">
     {% for product in all_products %}
-    <li>
-        <a href="{{ product.id }}/">{{product.name}}</a><br>
-        
-    </li>
+    <a class="single_product_link" href="{{ product.id }}/">
+        <div class="single_product">
+        <div>{{product.reviews}}</div>
+            <img src="{{ product.image.url }}" height="300px" width="100%" alt=""><br>
+            <div class="product_info">
+                <div class="product_info_leftside">
+                    <p class="product_prize product_info_fontsize">€{{product.prize}}0</p>
+                    <p class="product_info_fontsize">{{product.name}}</p>
+                </div>
+                <div class="product_info_rightside">
+                    <p class="product_info_fontsize">Farbe: {{product.colour}}</p>
+                    <p class="product_info_fontsize">{{product.get_sides_display}}</p>
+                </div>
+                
+                
+            </div>
+            
+        </div>
+    </a>
+    
        
         
     {% endfor %}
-</ul>
+</div>
 
 <a href={% url 'product-create' %}>Add a new Product</a><br>
 <a href={% url 'product-search' %}>Search the books</a>

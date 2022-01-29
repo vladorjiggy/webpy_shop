@@ -6,30 +6,94 @@
  h1 {
      color: #747474;
  }
-main{
-    margin: 50px;
-}
-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+
+ main {
+     margin: 50px;
+ }
+
+ header {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
  #logo {
      width: 60px;
      margin: 20px 0;
  }
- #login{
-    display: flex;
-    justify-content: center;
+
+ #login {
+     display: flex;
+     justify-content: center;
  }
- #login > p{
+
+ #login>p {
      margin-right: 10px;
  }
- #title{
-    margin-left: 10px;
+
+ #title {
+     margin-left: 10px;
  }
- #name_logo{
+
+ #name_logo {
+     display: flex;
+     align-items: flex-end;
+     justify-content: center;
+ }
+
+
+
+
+
+
+
+ #product_list {
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr 1fr;
+ }
+
+ .single_product {
+     margin: 10px;
+ }
+
+ .product_info {
+     background-color: aliceblue;
+     color: black;
+     padding: 10px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+ .product_info  p {
+     margin: 0 !important;
+ }
+
+ .single_product_link {
+     text-decoration: none !important;
+ }
+
+ .product_prize {
+     color: #993300;
+     font-size: 22px;
+ }
+ .product_info_fontsize{
+     font-size: 22px;
+ }
+ .add_product{
+    width: 70%;
+    margin: auto;
     display: flex;
-    align-items: flex-end;
     justify-content: center;
+ }
+ .add_product > div {
+     width: inherit;
+     background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+ }
+ .add_product_wrapper{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
  }

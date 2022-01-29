@@ -8,6 +8,7 @@ from .forms import DiceForm, SearchForm
 from .models import Dice
 from Useradmin.models import get_myuser_from_user
 from Shoppingcart.models import ShoppingCart
+from Reviews.models import Review
 
 
 class ProductListView(ListView):
@@ -15,11 +16,9 @@ class ProductListView(ListView):
     context_object_name = 'all_products'  # Default: object_list
     template_name = 'product-list.html'  # Default: book_list.html
 
+
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
-        myuser = self.request.user
-        user_is_authorized = myuser.is_authorized()
-        context['user_is_authorized'] = user_is_authorized
         return context
 
 
@@ -57,7 +56,11 @@ class ProductCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(ProductCreateView, self).get_context_data(**kwargs)
         myuser = self.request.user
-        user_is_authorized = myuser.is_authorized()
+        invert_op = getattr(self, "is_authorized", None)
+        if callable(invert_op):
+            user_is_authorized = myuser.is_authorized()
+        else:
+            user_is_authorized = False
         context['user_is_authorized'] = user_is_authorized
         return context
 
@@ -113,15 +116,20 @@ def product_edit(request, pk: str):
     product = Dice.objects.get(id=product_id)
     if request.method == 'POST':
         form = ProductEditForm(request.POST)
-        if form.is_valid():
-            product.name = form.cleaned_data['name']
-            product.description = form.cleaned_data['description']
-            product.colour = form.cleaned_data['colour']
-            product.sides = form.cleaned_data['sides']
-            product.prize = form.cleaned_data['prize']
-            product.image = form.cleaned_data['image']
-            product.save()
-            return redirect('product-list')
+        #print(form.data['image'])
+        
+        product.name = form.data['name']
+        product.description = form.data['description']
+        product.colour = form.data['colour']
+        product.sides = form.data['sides']
+        product.prize = form.data['prize']
+        product.image = request.FILES['image']
+        product.product_info = request.FILES['product_info']
+        
+        product.save()
+        return redirect('product-list')
+        #print('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT')
+        #return render(request, 'product-list', {})
 
     else:
         form = ProductEditForm(request.POST or None, instance=product)
