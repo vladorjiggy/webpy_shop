@@ -13,13 +13,21 @@ from Reviews.models import Review
 
 class ProductListView(ListView):
     model = Dice
-    context_object_name = 'all_products'  # Default: object_list
-    template_name = 'product-list.html'  # Default: book_list.html
+    context_object_name = 'all_products'
+    template_name = 'product-list.html'
 
-
+    print('d')
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
         return context
+
+    def form_valid(self, form):
+        print('h')
+        # Add to shopping cart
+        if self.request.method == 'POST':
+            myuser = self.request.user
+            #product = Dice.objects.filter(id=self.kwargs['pk'])
+            #ShoppingCart.add_item(myuser, product)
 
 
 class ProductDetailView(DetailView):
@@ -32,7 +40,6 @@ class ProductDetailView(DetailView):
     
     
     def form_valid(self, form):
-        print('d')
         # Add to shopping cart
         if self.request.method == 'POST':
             myuser = self.request.user

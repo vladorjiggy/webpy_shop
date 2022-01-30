@@ -13,14 +13,20 @@ from .models import ShopUser
 
 class MySignUpView(generic.CreateView):
     form_class = MySignUpForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('home')
     template_name = 'signup.html'
+
+    def form_valid(self, form):
+        valid = super(MySignUpView, self).form_valid(form)
+        auth_login(self.request, self.object)
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class MyLoginView(LoginView):
     template_name = 'registration/login.html'
 
     def form_valid(self, form):
+        print(form.get_user())
         """Security check complete. Log the user in. PERFORM CUSTOM CODE."""
         auth_login(self.request, form.get_user())
         return HttpResponseRedirect(self.get_success_url())

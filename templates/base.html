@@ -2,18 +2,23 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    {% load static %}
     {% block css %}{% endblock %}
     <title>{% block title %}Homepage Title{% endblock %}</title>
+    <script src="{% static 'js/app.js' %}" defer></script>  
 </head>
 <body>
     {% block header %}{% endblock %}
     <header>
-        <div id="name_logo">
+        <a style="color: #993300; text-decoration: none;" href="/home">
+            <div id="name_logo">
             
-            {% block logo %}XXX{% endblock %} 
-            {% block content_title %}Base Title{% endblock %} 
-            
-        </div>
+                {% block logo %}XXX{% endblock %} 
+                {% block content_title %}Base Title{% endblock %} 
+                
+            </div>
+        </a>
+        
         
         <div>
             

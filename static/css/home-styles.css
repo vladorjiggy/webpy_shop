@@ -26,6 +26,7 @@
      display: flex;
      justify-content: center;
      margin: 10px;
+     align-items: center;
  }
 
  #login>p {
@@ -51,9 +52,11 @@
 
 
 
-
-
-
+/*
+#product_list_wrapper{
+    background-color: white;
+}
+*/
  #product_list {
      display: grid;
      grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -109,6 +112,21 @@
     align-items: center;
  }
  .searchform{
-     width: 40%;
-     margin: auto;
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+ }
+ .search_input{
+     margin: 10px;
+ }
+ .cart_button{
+     color: white !important;
+ }
+ .add_new_product{
+     width: 99%;
+     margin: 10px;
+ }
+ .helptext, .signup_form li{
+     color: black;
+     font-size: 12px;
  }
