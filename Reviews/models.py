@@ -6,6 +6,7 @@ from Votes.models import Vote
 import logging
 from django.conf import settings
 
+
 class Review(models.Model):
     RATING = [
         ('1', 'ein Stern'),
