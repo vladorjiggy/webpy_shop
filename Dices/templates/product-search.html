@@ -1,0 +1,25 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block title %}Search Products{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+    <br>
+    <br>
+
+    {% if show_results %}
+        <b>Products found:</b><br>
+        <ul>
+        {% for product in products_found %}
+            <a href="{% url 'product-detail' product.id %}"><b>{{ product.name }}</b></a><br>
+            <br>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block title %}Review details{% endblock %}
+
+{% block content %}
+<h2>Review detail</h2>
+
+    <table>
+    <tr>
+        <td><b>Title:</b></td>
+        <td>{{ that_one_Review.title }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Rating:</b></td>
+        <td>{{ that_one_Review.get_rating_display }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Text:</b></td>
+        <td>{{ that_one_Review.text }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Type:</b></td>
+        <td>{{ that_one_Review.get.product_reviewed.name }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Entered by:</b></td>
+        <td>{{ that_one_Review.user }}<br></td>
+    </tr>
+    <tr>
+        <td><b>Entered on:</b></td>
+        <td>{{ that_one_Review.timestamp }}<br></td>
+    </tr>
+
+    </table>
+ <br>
+    <span>{{ helpful_votes }}</span>
+    <a href="{% url 'review_vote' that_one_Review.id 'helpful' %}">
+        <img src="{% static 'Dice/like.png' %}" height="50px" width="5%" alt="">
+    </a>
+    <span>{{ not_helpful_votes }}</span>
+    <a href="{% url 'review_vote' that_one_Review.id 'not_helpful' %}">
+        <img src="{% static 'Dice/thumb-down.png' %}" height="50px" width="5%" alt="">
+    </a>
+    <br>
+    <br>
+    <a href="{% url 'reviews_product' product_reviewed_id %}">Back to Review list</a>
+    <br>
+    <a href="{% url 'review_delete' that_one_Review.id %}">Delete Review</a>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'home.html' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+{% if user.is_authorized %}
+<div class="add_product_wrapper">
+    <div class="add_product">
+        <div>
+            <h2>Neues Produkt hinzufügen</h2>
+            <hr>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {{ form.as_table }} -->
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-dark btn-block">Speichern</button>
+        </form>
+        </div>
+        
+    </div>
+</div>
+
+{% else %}
+<div class="add_product_wrapper">
+    <div class="add_product">
+        <div>
+            <p>You must be a staff member to add products</p>
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+{% endif %}
+{% endblock %}

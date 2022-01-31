@@ -1,0 +1,132 @@
+ body {
+     background-color: black;
+     color: #993300;
+ }
+
+ h1 {
+     color: #747474;
+ }
+
+ main {
+     margin: 50px;
+ }
+
+ header {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
+ #logo {
+     width: 60px;
+     margin: 20px 0;
+ }
+
+ #login {
+     display: flex;
+     justify-content: center;
+     margin: 10px;
+     align-items: center;
+ }
+
+ #login>p {
+     margin-right: 10px;
+ }
+
+ #title {
+     margin-left: 10px;
+ }
+
+ #name_logo {
+     display: flex;
+     align-items: flex-end;
+     justify-content: center;
+ }
+.header_profile_img{
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+
+
+/*
+#product_list_wrapper{
+    background-color: white;
+}
+*/
+ #product_list {
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr 1fr;
+ }
+
+ .single_product {
+     margin: 10px;
+ }
+
+ .product_info {
+     color: black;
+     padding: 10px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+ .product_info  p {
+     margin: 0 !important;
+ }
+
+ .single_product_link {
+     text-decoration: none !important;
+ }
+
+ .product_prize {
+     color: #993300;
+     font-size: 25px !important;
+ }
+ .product_info_fontsize{
+     font-size: 22px;
+ }
+ .add_product{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+ }
+ .add_product > div {
+     width: inherit;
+     background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+ }
+ .add_product_wrapper{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ .searchform > form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ .searchform{
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+ }
+ .search_input{
+     margin: 10px;
+ }
+ .cart_button{
+     color: white !important;
+ }
+ .add_new_product{
+     width: 99%;
+     margin: 10px;
+ }
+ .helptext, .signup_form li{
+     color: black;
+     font-size: 12px;
+ }

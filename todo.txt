@@ -1,0 +1,9 @@
+wie loggen sich Angestellte ein? -> admin user beim init anlegen und CRUD für neue Angestellte umsetzen (insofern die Zeit es hergibt / ansonsten nur ein Admin)
+
+CSS:
+
+SingleProduct
+Reviews
+SingleReview
+Home
+Footer

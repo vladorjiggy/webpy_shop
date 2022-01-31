@@ -1,0 +1,19 @@
+[
+  {
+    "id": 5,
+    "model": "Useradmin.ShopUser",
+    
+    "fields": {
+      "password": "pbkdf2_sha256$260000$A16eJhbKN4VMfBu65IUSvD$iubU2Ry+ADmpnnU75DLavmQX5siX+MUh0UGToItA7Z8=",
+      "username": "admin",
+      "first_name": "Admin",
+      "last_name": "Admin",
+      "email": "admin@admin.de",
+      "is_staff": 1,
+      "is_superuser": 1,
+      "profile_picture": "user_profile_pictures/stanniprofileImage_bMZjpfr.jpeg",
+      "type": "CS",
+      "date_joined": "2022-01-29 11:48:17.610729"
+    }
+  }
+]
