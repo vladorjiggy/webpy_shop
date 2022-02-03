@@ -10,7 +10,8 @@ class ReviewForm(forms.ModelForm):
             'rating': forms.Select(choices=Review.RATING),
             'timestamp': forms.HiddenInput(),
             'user': forms.HiddenInput(),
-            'product_reviewed': forms.HiddenInput()
+            'product_reviewed': forms.HiddenInput(),
+            'text': forms.Textarea()
         }
 
 

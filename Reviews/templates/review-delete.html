@@ -20,36 +20,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/review-styles.css' %}">
 {% endblock %}
 
-{% block title %}Add Review{% endblock %}
+{% block title %}Confirm Deletion{% endblock %}
 
-{% block logged_in_content %}
-    <div style="margin-right: 10px;">
-    <div class="header_profile_img" style="background-image: url({{user.profile_picture.url}});"></div>
-    </div>
-    <a href="{% url 'logout' %}">
-    <button type="button" class="btn btn-light btn-block">Logout</button>
-    </a>
-    <section id="form">
-    <h2>Add Review</h2>
-    <form method ="Post">
-        {% csrf_token %}
+{% block content %}
 
-        <label for="id_rating">Rating</label>
-        <select id="id_rating" type="text" name="rating">
-            <option value="1">ein Stern</option>
-            <option value="2">zwei Sterne</option>
-            <option value="3">drei Sterne</option>
-            <option value="4">vier Sterne</option>
-            <option value="5">fünf Sterne</option>
-        </select>
-        <br><br>
-         {{ form.title.label }}: {{ form.title }}<br><br>
-         {{ form.text.label }}: {{ form.text }}<br><br>
-
-
-       <!-- {{ form.as_p }}-->
-        <button type="submit">Add Review</button>
+    <form method="post">{% csrf_token %}
+        <h2>Are you SURE you want to delete "{{ that_one_review.title }}"?</h2>
+        <input id="confirm" type="submit" value="Confirm">
     </form>
-</section>
 {% endblock %}
-{% block content %}{% endblock %}
