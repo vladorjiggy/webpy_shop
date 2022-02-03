@@ -16,7 +16,7 @@ class ProductListView(ListView):
     context_object_name = 'all_products'
     template_name = 'product-list.html'
 
-    print('d')
+    
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
         return context
@@ -30,10 +30,43 @@ class ProductListView(ListView):
             #ShoppingCart.add_item(myuser, product)
 
 
+def single_product(request, **kwargs):
+    dice_id = kwargs['pk']
+    that_one_product = Dice.objects.get(id=dice_id)
+    context = {'that_one_product': that_one_product}
+
+    myuser = request.user
+    user_is_authorized = myuser.is_authorized()
+    review_allowed = True
+    review = Review.objects.filter(product_reviewed=kwargs['pk']).filter(user=myuser)
+    print(review)
+    if len(review) > 0:
+        review_allowed = False
+    else: 
+        review_allowed = True
+    context['review_allowed'] = review_allowed
+    context['user_is_authorized'] = user_is_authorized
+    
+
+    if request.method == 'POST':
+        myuser = request.user
+        product = Dice.objects.get(id=kwargs['pk'])
+        ShoppingCart.add_item(myuser, product)
+
+    if request.method == 'DELETE':
+        print('DELETE')
+        user = request.user
+        if user.is_staff == 1:
+            Dice.objects.filter(id=dice_id).delete()
+
+    return render(request, 'product-detail.html', context)
+
+'''
 class ProductDetailView(DetailView):
     model = Dice
-    context_object_name = 'that_one_product'  # Default: book
-    template_name = 'product-detail.html'  # Default: book_detail.html
+    context_object_name = 'that_one_product' 
+    template_name = 'product-detail.html'
+    
     def get_queryset(self, *args, **kwargs):
         return Dice.objects.filter(id=self.kwargs['pk']) # evtl self
 
@@ -50,9 +83,18 @@ class ProductDetailView(DetailView):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         myuser = self.request.user
         user_is_authorized = myuser.is_authorized()
+        review_allowed = 'True'
+        review = Review.objects.filter(product_reviewed=self.kwargs['pk']).filter(user=myuser)
+        print(review)
+        if len(review) > 0 | review:
+            review_allowed = 'False'
+        else: 
+            review_allowed = 'True'
+        context['review_allowed'] = review_allowed
+        context['reviews'] = review
         context['user_is_authorized'] = user_is_authorized
         return context
-
+'''
 
 class ProductCreateView(CreateView):
     model = Dice
@@ -98,6 +140,13 @@ class ProductDeleteView(DeleteView):
     context_object_name = 'that_one_product'
     template_name = 'product-confirm_delete.html'
 
+def product_delete(request, **kwargs):
+    if request.method == 'DELETE':
+        user = request.user
+        product_id = kwargs['pk']
+        if user.is_staff == 1:
+            Dice.objects.filter(id=product_id).delete()
+
 def product_search(request):
     if request.method == 'POST':
         search_string_sides = request.POST['sides']
@@ -135,8 +184,6 @@ def product_edit(request, pk: str):
         
         product.save()
         return redirect('product-list')
-        #print('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT')
-        #return render(request, 'product-list', {})
 
     else:
         form = ProductEditForm(request.POST or None, instance=product)

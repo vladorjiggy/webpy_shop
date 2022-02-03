@@ -1,0 +1,37 @@
+{% extends 'home.html' %}
+
+{% block title %}Edit Product{% endblock %}
+
+{% block content %}
+{% if edit_allowed %}
+<div class="add_product_wrapper">
+    <div class="add_product">
+        <div>
+            <h2>Review bearbeiten</h2>
+            <hr>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {{ form.as_table }} -->
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-dark btn-block">Speichern</button>
+        </form>
+        </div>
+        
+    </div>
+</div>
+
+{% else %}
+<div class="add_product_wrapper">
+    <div class="add_product">
+        <div>
+            <p>Du darfst nur deine eigenen Reviews bearbeiten</p>
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+{% endif %}
+{% endblock %}

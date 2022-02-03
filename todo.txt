@@ -1,4 +1,24 @@
-wie loggen sich Angestellte ein? -> admin user beim init anlegen und CRUD für neue Angestellte umsetzen (insofern die Zeit es hergibt / ansonsten nur ein Admin)
+offen:
+
+- Suchen nach Produkt-Namen, Produkt-Beschreibung, Bewertungs-Sterne
+- Benutzer kann unangebrachte Bewertung melden (report inappropriate review)  --- das wird wahrscheinlich nichts mehr
+- Kunden-Service darf Bewertungen deaktivieren / löschen
+
+
+zu bearbeiten:
+
+
+
+
+erledigt:
+
+- /home zu /
+- Text plus Sterne (1 bis 5 Sterne), eine Bewertung pro Benutzer pro Produkt
+- Benutzer darf eigene Bewertungen ändern / löschen
+- delete product als modal
+- delete review als modal
+
+
 
 CSS:
 
