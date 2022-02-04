@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from Dices.models import Dice
-from Reviews.forms import ReviewForm
+from Reviews.forms import ReviewForm, ReviewEditForm
 from Reviews.models import Review
 from Useradmin.models import get_myuser_from_user
 import logging
@@ -28,14 +28,11 @@ def review_create(request, **kwargs):
         form.instance.user = user
         form.instance.product_reviewed = Dice.objects.get(id=product_id)
 
-        #review = Review.objects.get(user=user)
-        if 1 == 0:
+        review = Review.objects.filter(
+            product_reviewed=product_id).filter(user=user)
+        if len(review) > 0:
             pass
-        # if user im product
-        else: 
-            logging.basicConfig(level=logging.DEBUG)
-            logging.debug('is valid', form.is_valid())
-            logging.debug(form.errors)
+        else:
             if form.is_valid():
                 form.save()
             else:
@@ -51,16 +48,29 @@ def review_detail(request, **kwargs):
     review_id = kwargs['pk']
     that_one_review = Review.objects.get(id=review_id)
     product_reviewed = Dice.objects.get(id=that_one_review.product_reviewed.id)
+    delete_review_allowed = True
+
+    if that_one_review.user == request.user or request.user.is_staff == 1:
+        delete_review_allowed = True
+    else:
+        delete_review_allowed = False
+
     product_reviewed_id = product_reviewed.id
     context = {'that_one_Review': that_one_review,
                'product_reviewed_id': product_reviewed_id,
                'helpful_votes': that_one_review.get_helpful_count(),
-               'not_helpful_votes': that_one_review.get_not_helpful_count()}
+               'not_helpful_votes': that_one_review.get_not_helpful_count(),
+               'delete_review_allowed': delete_review_allowed
+               }
+    if request.method == 'DELETE':
+        if delete_review_allowed:
+            Review.objects.filter(id=review_id).delete()
+
     return render(request, 'review-detail.html', context)
 
 
 def vote(request, pk, helpful_or_not: str):
-    
+
     logging.basicConfig(level=logging.DEBUG)
     logging.debug('helpful or not', helpful_or_not)
     review = Review.objects.get(id=int(pk))
@@ -86,3 +96,32 @@ def review_delete(request, **kwargs):
         that_one_review = Review.objects.get(id=review_id)
         context = {'that_one_review': that_one_review}
         return render(request, 'review-delete.html', context)
+
+def review_edit(request, pk: str):
+    review_id = pk
+    review = Review.objects.get(id=review_id)
+    if request.method == 'POST':
+        form = ReviewEditForm(request.POST)
+        
+        review.rating = form.data['rating']
+        review.title = form.data['title']
+        review.text = form.data['text']
+        
+        review.save()
+        return redirect('review_detail', pk=pk)
+
+    else:
+        form = ReviewEditForm(request.POST or None, instance=review)
+        user = request.user
+        edit_allowed = True
+        if user == review.user:
+            edit_allowed = True
+        else: 
+            edit_allowed = False
+        
+        context = {'form': form,
+                   'review': review,
+                   'user': user,
+                   'edit_allowed': edit_allowed
+                   }
+        return render(request, 'review-edit.html', context)

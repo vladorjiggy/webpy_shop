@@ -3,18 +3,6 @@ from Reviews.models import Review
 from Dices.models import Dice
 
 
-class ReviewEditForm(forms.ModelForm):
-    class Meta:
-        model = Review
-        fields = {'text', 'rating'}
-        widgets = {
-            'timestamp': forms.HiddenInput(),
-            'user': forms.HiddenInput(),
-            'product_reviewed': forms.HiddenInput(),
-            'rating': forms.Select(choices=Review.RATING)
-        }
-
-
 class ProductEditForm(forms.ModelForm):
     image = forms.ImageField()
     product_info = forms.FileField()

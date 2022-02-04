@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.admin.views.decorators import staff_member_required
 from Reviews.models import Review
-from Customerservice.forms import ReviewEditForm, ProductEditForm
+from Customerservice.forms import ProductEditForm
 from Dices.models import Dice
 
-
-def review_edit_delete(request, pk: str):
+'''
+def review_delete(request, pk: str):
     review_id = pk
     review = Review.objects.get(id=review_id)
     if request.method == 'POST':
@@ -27,6 +27,6 @@ def review_edit_delete(request, pk: str):
                    'review': review,
                    'user': user}
         return render(request, 'review-edit-delete.html', context)
-
+'''
 
 
