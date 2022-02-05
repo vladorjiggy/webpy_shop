@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     {% load static %}
-    {% block css %}{% endblock %}
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base-styles.css' %}"/>
+    {% endblock %}
     <title>{% block title %}Homepage Title{% endblock %}</title>
     <script src="{% static 'js/app.js' %}" defer></script>  
 </head>
-<body>
+<body style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 4fr 1fr; background-color: black">
     {% block header %}{% endblock %}
-    <header>
-        <a style="color: #993300; text-decoration: none;" href="/">
+    <header style="grid-row: 1;
+   grid-column: span 3">
+        <a style="text-decoration: none;" href="/">
             <div id="name_logo">
             
                 {% block logo %}XXX{% endblock %} 
@@ -32,12 +35,16 @@
         </div>
                
     </header>
-    <main>
+    <main style="grid-row: 2 / span 2;
+   grid-column: span 3; justify-content: center">
         {% block content %}Base Content{% endblock %}
     </main>
     
-    <footer>
-        Das ist der Footer
+    <footer style="display: flex; justify-content: space-around; align-items: end; grid-row: 6;
+   grid-column: span 3;">
+        <a style="color: #747474" href="">Contact Information</a>
+        <div>© Dice Yourself 2022</div>
+        <a style="color: #747474" href="">Impressum</a>
     </footer>
 </body>
 </html>

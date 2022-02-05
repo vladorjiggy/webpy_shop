@@ -179,8 +179,10 @@ def product_edit(request, pk: str):
         product.colour = form.data['colour']
         product.sides = form.data['sides']
         product.prize = form.data['prize']
-        product.image = request.FILES['image']
-        product.product_info = request.FILES['product_info']
+        if request.FILES.get('image', False):
+            product.image = request.FILES['image']
+        if request.FILES.get('product_info', False):
+            product.product_info = request.FILES['product_info']
         
         product.save()
         return redirect('product-list')

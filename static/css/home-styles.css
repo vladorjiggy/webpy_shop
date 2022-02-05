@@ -1,6 +1,11 @@
- body {
-     background-color: black;
-     color: #993300;
+ html {
+
+ }
+
+body {
+    background-color: black;
+     color: #CC3434;
+     margin: 20px;
  }
 
  h1 {
@@ -13,7 +18,7 @@
 
  header {
      display: flex;
-     align-items: center;
+     align-items: flex-start;
      justify-content: space-between;
  }
 
@@ -29,12 +34,17 @@
      align-items: center;
  }
 
+ #logout {
+     color: #CC3434;
+ }
+
  #login>p {
      margin-right: 10px;
  }
 
  #title {
-     margin-left: 10px;
+     margin-left: 20px;
+     color: #CC3434
  }
 
  #name_logo {
@@ -42,6 +52,7 @@
      align-items: flex-end;
      justify-content: center;
  }
+
 .header_profile_img{
     width: 50px;
     height: 50px;
@@ -50,7 +61,47 @@
     border-radius: 50%;
 }
 
+#home-pic {
+    grid-column: 1 / span 5;
+    grid-row: 1 / span 5;
+    width: 90vw;
+    height: 80vh;
+    border-color: #CC3434;
 
+}
+
+#list-link {
+    grid-column: 3 / 4;
+    grid-row: 5;
+    text-align: center;
+    margin: auto;
+}
+
+#button-list-link {
+    text-align: center;
+    margin: auto;
+    color: #CC3434;
+}
+
+#intro {
+    grid-column: 1 / 6;
+    grid-row: 1;
+    color: #CC3434;
+    padding-top: 10px;
+    text-align: center;
+    z-index: 1;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    background-image: url("../Dice/dice_home.jpg");
+    height: 90vh;
+    width: 90vw;
+    background-position: center;
+    background-size: cover;
+}
 
 /*
 #product_list_wrapper{
