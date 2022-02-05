@@ -5,18 +5,28 @@
 
 {% block content %}
 <h2>Payment</h2>
+
     {% if paid %}
         Thank you for your payment.<br><br>
     {% elif shopping_cart_is_empty %}
         Your shopping cart is empty. There is nothing to pay for.<br><br>
     {% else %}
-        <form method="POST">
-            {% csrf_token %}
-            {{ payment_form.as_p }}
-            <input type="hidden" id="shopping_cart_id" name="shopping_cart_id" value="{{ shopping_cart.id }}">
-            <button type="submit" name="Pay">Pay</button>
-        </form>
-        <br>
-        <a href="{% url 'product-list' %}">Keep shopping the dices</a>
+
+    <div class="add_product_wrapper">
+        <div class="add_product">
+            <div>
+                <h2>Checkout</h2>
+                <hr>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ payment_form.as_p }}
+                    <input type="hidden" id="shopping_cart_id" name="shopping_cart_id" value="{{ shopping_cart.id }}">
+                    <button type="submit" class="btn btn-success btn-block">Bezahlen</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+        
     {% endif %}
 {% endblock %}

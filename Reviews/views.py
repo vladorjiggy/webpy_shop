@@ -20,6 +20,7 @@ def review_list_2(request, **kwargs):
     return render(request, 'review-list.html', context)
 
 
+
 def review_create(request, **kwargs):
     if request.method == 'POST':
         product_id = kwargs['pk']
@@ -48,7 +49,13 @@ def review_detail(request, **kwargs):
     review_id = kwargs['pk']
     that_one_review = Review.objects.get(id=review_id)
     product_reviewed = Dice.objects.get(id=that_one_review.product_reviewed.id)
-    delete_review_allowed = True
+    delete_review_allowed = False
+    voting_allowed = False
+
+    if request.user.is_anonymous:
+        voting_allowed = False
+    else:
+        voting_allowed = True
 
     if that_one_review.user == request.user or request.user.is_staff == 1:
         delete_review_allowed = True
@@ -60,7 +67,8 @@ def review_detail(request, **kwargs):
                'product_reviewed_id': product_reviewed_id,
                'helpful_votes': that_one_review.get_helpful_count(),
                'not_helpful_votes': that_one_review.get_not_helpful_count(),
-               'delete_review_allowed': delete_review_allowed
+               'delete_review_allowed': delete_review_allowed,
+               'voting_allowed': voting_allowed
                }
     if request.method == 'DELETE':
         if delete_review_allowed:

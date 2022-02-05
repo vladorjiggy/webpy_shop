@@ -63,6 +63,26 @@ class Review(models.Model):
         votes = Vote.objects.filter(review=self)
         return votes 
 
+    def reviews_average(product):
+        all_reviews = Review.objects.filter(product_reviewed=product)
+        all_ratings = 0
+        for review in all_reviews:
+            all_ratings+=int(review.rating)
+        ave = 0
+        if len(all_reviews) > 0:
+            ave = int(all_ratings / len(all_reviews))
+        return [ave, len(all_reviews)]
+
+    def all_products_by_rating(rating):        
+        all_reviews = Review.objects.filter()
+        products = []
+        for review in all_reviews:
+            ave = Review.reviews_average(review.product_reviewed)
+            if int(ave[0]) == int(rating):
+                if review.product_reviewed not in products:
+                    products.append(review.product_reviewed)            
+        return products
+
     
 
 

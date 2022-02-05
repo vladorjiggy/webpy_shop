@@ -21,6 +21,15 @@
                 <option value="D12">12 Seiten</option>
                 <option value="D20">20 Seiten</option>
             </select>
+
+            <select name="rating" class="custom-select">
+                <option selected value="">Bewertung</option>
+                <option value="1">1 Stern</option>
+                <option value="2">2 Sterne</option>
+                <option value="3">3 Sterne</option>
+                <option value="4">4 Sterne</option>
+                <option value="5">5 Sterne</option>
+            </select>
             {% csrf_token %}
             <button type="submit" class="btn btn-light"><i class="fa fa-search"></i></button>
 
@@ -43,6 +52,16 @@
                     <div class="product_info_rightside">
                         <p class="product_info_fontsize">Farbe: {{product.colour}}</p>
                         <p class="product_info_fontsize">{{product.get_sides_display}}</p>
+
+                        {% for i in max_stars %}
+                            {% if product.average_rating >= i %}
+                                <i style="color: gold;" class="fas fa-star"></i>
+                            {% else %}
+                                <i style="color: gold;" class="far fa-star"></i>
+                            {% endif %}
+                            
+                        {% endfor %}
+                        
                     </div>
                     <p id="product_id" style="display: none;">{{product.id}}</p>
 

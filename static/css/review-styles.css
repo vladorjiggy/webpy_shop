@@ -1,0 +1,80 @@
+#form {
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    width: 40%;
+    box-sizing: border-box;
+    border-radius: 5px 15px 5px 15px;
+    background-color : white;
+}
+#form h2{
+    margin: 2%;
+}
+
+#form form{
+    margin: 2%;
+}
+
+textarea{
+    vertical-align: top;
+    width: 90%;
+}
+input{
+    width: 89.5%;
+}
+
+ul li {
+    list-style: none;
+    padding-left: 20px;
+    padding-top: 15px;
+    margin-bottom: 5px;
+    margin-left: 20%;
+    margin-right: 20%;
+    box-sizing: border-box;
+    border-radius: 5px 15px 5px 15px;
+    background-color : #1b1b1b;
+    text-align: left;
+}
+#reviews {
+    text-align: center;
+}
+
+#detail{
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color : white;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative;
+}
+
+#detail h2{
+    margin-left: 5px;
+}
+
+
+#detail section{
+    text-align: right;
+    margin-right: 5px;
+}
+
+
+#confirm{
+    width: 30%;
+}
+
+footer{
+    align-content: center;
+    position: absolute;
+    top: 130%;
+} 
+.table{
+    color: #CC3434 !important;
+}
+
+.review_back{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}

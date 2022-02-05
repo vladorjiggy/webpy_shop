@@ -11,6 +11,22 @@ from Shoppingcart.models import ShoppingCart
 from Reviews.models import Review
 
 
+
+def product_list(request, **kwargs):
+    all_products = Dice.objects.filter()
+    for product in all_products:
+        ave = Review.reviews_average(product)
+        product.average_rating = ave[0]
+        product.count_ratings = ave[1]
+    context = {
+        'all_products': all_products,
+        'max_stars': [1,2,3,4,5]
+    }
+
+    return render(request, 'product-list.html', context)
+
+
+'''
 class ProductListView(ListView):
     model = Dice
     context_object_name = 'all_products'
@@ -21,29 +37,28 @@ class ProductListView(ListView):
         context = super(ProductListView, self).get_context_data(**kwargs)
         return context
 
-    def form_valid(self, form):
-        print('h')
-        # Add to shopping cart
-        if self.request.method == 'POST':
-            myuser = self.request.user
-            #product = Dice.objects.filter(id=self.kwargs['pk'])
-            #ShoppingCart.add_item(myuser, product)
-
+'''
 
 def single_product(request, **kwargs):
     dice_id = kwargs['pk']
     that_one_product = Dice.objects.get(id=dice_id)
     context = {'that_one_product': that_one_product}
-
+    review_allowed = False
     myuser = request.user
-    user_is_authorized = myuser.is_authorized()
-    review_allowed = True
-    review = Review.objects.filter(product_reviewed=kwargs['pk']).filter(user=myuser)
-    print(review)
-    if len(review) > 0:
-        review_allowed = False
-    else: 
-        review_allowed = True
+    
+    if myuser.is_anonymous:
+        user_is_authorized = False
+        review = []
+    else:
+        user_is_authorized = myuser.is_authorized()
+        review = Review.objects.filter(product_reviewed=kwargs['pk']).filter(user=myuser)
+        if len(review) > 0:
+            review_allowed = False
+        else: 
+            review_allowed = True
+    
+   
+    
     context['review_allowed'] = review_allowed
     context['user_is_authorized'] = user_is_authorized
     
@@ -152,13 +167,23 @@ def product_search(request):
         search_string_sides = request.POST['sides']
         products_found = Dice.objects.filter(sides__contains=search_string_sides)
         search_string_title = request.POST['name']
+        search_rating = request.POST['rating']
         if search_string_title:
             products_found = products_found.filter(name__contains=search_string_title)
-
+        if search_rating:
+            products_found = Review.all_products_by_rating(search_rating)
         form_in_function_based_view = SearchForm()
+
+        
+        for product in products_found:
+            ave = Review.reviews_average(product)
+            product.average_rating = ave[0]
+            product.count_ratings = ave[1]
+        
         context = {'form': form_in_function_based_view,
                    'all_products': products_found,
-                   'show_results': True}
+                   'show_results': True,
+                   'max_stars': [1,2,3,4,5]}
         return render(request, 'product-list.html', context)
 
     else:
@@ -200,7 +225,6 @@ def product_detail(request, **kwargs):
     # print(kwargs)
     product_id = kwargs['pk']
     that_one_computer_in_my_function_based_view = Dice.objects.get(id=product_id)
-    # print(str(computer_id), " :: ", that_one_computer_in_my_function_based_view)
 
     # Add to shopping cart
     if request.method == 'POST':

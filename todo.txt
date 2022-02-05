@@ -1,6 +1,6 @@
 offen:
 
-- Suchen nach Produkt-Namen, Produkt-Beschreibung, Bewertungs-Sterne
+
 - Benutzer kann unangebrachte Bewertung melden (report inappropriate review)  --- das wird wahrscheinlich nichts mehr
 - Kunden-Service darf Bewertungen deaktivieren / löschen
 
@@ -17,13 +17,7 @@ erledigt:
 - Benutzer darf eigene Bewertungen ändern / löschen
 - delete product als modal
 - delete review als modal
-
+- Suchen nach Produkt-Namen, Produkt-Beschreibung, Bewertungs-Sterne
 
 
 CSS:
-
-SingleProduct
-Reviews
-SingleReview
-Home
-Footer

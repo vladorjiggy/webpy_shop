@@ -1,0 +1,125 @@
+/*
+#product_list_wrapper{
+    background-color: white;
+}
+*/
+#product_list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.single_product {
+    margin: 10px;
+}
+
+.product_info {
+    color: black;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.product_info  p {
+    margin: 0 !important;
+}
+
+.single_product_link {
+    text-decoration: none !important;
+}
+
+.product_prize {
+    color: #993300;
+    font-size: 25px !important;
+}
+.product_info_fontsize{
+    font-size: 22px;
+}
+.add_product{
+   width: 70%;
+   margin: auto;
+   display: flex;
+   justify-content: center;
+}
+.add_product > div {
+    width: inherit;
+    background-color: white;
+   padding: 30px;
+   border-radius: 10px;
+}
+.add_product_wrapper{
+   height: auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.searchform > form{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.searchform{
+   width: 100%;
+   margin: auto;
+   padding: 10px;
+}
+.search_input{
+    margin: 10px;
+}
+.cart_button{
+    color: white !important;
+}
+.add_new_product{
+    width: 99%;
+    margin: 10px;
+}
+.helptext, .signup_form li{
+    color: black;
+    font-size: 12px;
+}
+.product_detail{
+    width: 50%;
+    margin: auto;
+}
+.product_detail_header{
+    display: flex;
+    justify-content: center;
+}
+.product_review_buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product_review_button{
+    width: 100%;
+}
+#custumer_service_product{
+    position: absolute;
+    top: 0;
+    right: 5px;
+}
+.shoppingcart{
+    width: 50%;
+    margin: auto;
+}
+.shoppingcart_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.shoppingcart_item > p{
+    margin: 0;
+}
+.shoppingcart_total{
+    float: right;
+    margin-top: 10px;
+}
+.shoppingcart_buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.shoppingcart_back{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}

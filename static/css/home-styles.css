@@ -1,6 +1,11 @@
- html {
-
- }
+footer{
+    display: flex; justify-content: space-around; align-items: end; grid-row: 6;
+   grid-column: span 3; position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;background-color: black;
+    padding: 20px;
+}
 
 body {
     background-color: black;
@@ -103,81 +108,3 @@ body {
     background-size: cover;
 }
 
-/*
-#product_list_wrapper{
-    background-color: white;
-}
-*/
- #product_list {
-     display: grid;
-     grid-template-columns: 1fr 1fr 1fr 1fr;
- }
-
- .single_product {
-     margin: 10px;
- }
-
- .product_info {
-     color: black;
-     padding: 10px;
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
- }
- .product_info  p {
-     margin: 0 !important;
- }
-
- .single_product_link {
-     text-decoration: none !important;
- }
-
- .product_prize {
-     color: #993300;
-     font-size: 25px !important;
- }
- .product_info_fontsize{
-     font-size: 22px;
- }
- .add_product{
-    width: 70%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
- }
- .add_product > div {
-     width: inherit;
-     background-color: white;
-    padding: 30px;
-    border-radius: 10px;
- }
- .add_product_wrapper{
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
- }
- .searchform > form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
- }
- .searchform{
-    width: 100%;
-    margin: auto;
-    padding: 10px;
- }
- .search_input{
-     margin: 10px;
- }
- .cart_button{
-     color: white !important;
- }
- .add_new_product{
-     width: 99%;
-     margin: 10px;
- }
- .helptext, .signup_form li{
-     color: black;
-     font-size: 12px;
- }

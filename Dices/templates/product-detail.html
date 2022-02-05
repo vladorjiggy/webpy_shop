@@ -1,5 +1,6 @@
 {% extends 'home.html' %}
 {% load static %}
+
 {% block title %}Product detail{% endblock %}
 
 {% block content %}
@@ -9,7 +10,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="DeleteModalLabel">Login</h5>
+                <h5 class="modal-title" id="DeleteModalLabel">Produkt löschen</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -29,67 +30,69 @@
 
 
 
-<h2>Product detail</h2>
 
-<table>
-    <tr>
-        <td><b>Title:</b></td>
-        <td>{{ that_one_product.name }}<br></td>
-    </tr>
-    <tr>
-        <td><b>Description:</b></td>
-        <td>{{ that_one_product.description }}<br></td>
-    </tr>
-    <tr>
-        <td><b>Color:</b></td>
-        <td>{{ that_one_product.colour }}<br></td>
-    </tr>
-    <tr>
-        <td><b>Sides:</b></td>
-        <td>{{ that_one_product.get_sides_display }}<br></td>
-    </tr>
-    <tr>
-        <td><b>Prize:</b></td>
-        <td>{{ that_one_product.prize }}€<br></td>
-    </tr>
-    <tr>
-        <td><b>Image:</b>
-            <img src="{{ that_one_product.image.url }}" width="500px" alt=""><br>
-        </td>
 
-    </tr>
-    <tr>
-        <td><b>Product Info:</b>
-            <a href="{{ that_one_product.product_info.url }}" type="application/pdf" width="500px" alt="">Download<br>
-        </td>
+<div class="card product_detail">
+    <div class="card-header product_detail_header">
+        <img style="margin-top: 25px;" src="{{ that_one_product.image.url }}" width="100%" alt="">
+        {% if user_is_authorized %}
+        <div id="custumer_service_product">
+            
+            <button type="button" class="btn btn-transparent" data-toggle="modal" data-target="#DeleteModal">
+                <i style="color: #CC3434;" class="fa fa-trash-alt"></i>
+            </button>
+            <a href={% url 'product-edit' that_one_product.id %}>
+                <button type="button" class="btn btn-transparent">
+                    <i class="fa fa-edit"></i>
+                </button>
+            </a>
+        </div>
+            
+        {% endif %}
+    </div>
+    <div style="margin: 0 10px;" class="product_info card-body">
+        <div class="product_info_leftside">
+            <p class="product_prize card-title">€{{ that_one_product.prize }}0</p>
+            <p class="product_info_fontsize">{{ that_one_product.name }}</p>
+        </div>
+        <div class="product_info_rightside">
+            <p class="product_info_fontsize">Farbe: {{ that_one_product.colour }}</p>
+            <p class="product_info_fontsize">{{ that_one_product.get_sides_display }}</p>
+            <a href="{{ that_one_product.product_info.url }}" type="application/pdf" width="500px" alt="" target="__blank">Produktinfo</a>
+        </div>
+        <p id="product_id" style="display: none;">{{product.id}}</p>
 
-    </tr>
-</table>
-{% if user.is_authenticated %}
-<br>
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">Add to shopping cart</button>
-</form>
-{% else %}
-<br><a href="{% url 'login' %}">Login</a> to add to shopping cart
-<br>
-{% endif %}
+    </div>
+    <div class="card-body">
+        <p style="color: rgba(0,0,0,0.7);" class="">{{ that_one_product.description }}</p>
+        
+    </div>
+    <div class="product_review_buttons">
+        {% if review_allowed%}
+            <a class="product_review_button" href="{% url 'review_create' that_one_product.id %}">
+                <button type="button" class="product_review_button btn btn-secondary">Bewertung schreiben</button>
+            </a>
+        {% endif %}
+        <a class="product_review_button" href="{% url 'reviews_product' that_one_product.id %}">
+            <button type="button" class="product_review_button btn btn-secondary">Bewertungen ansehen</button>
+        </a>
+        
+        
+    </div>
+    
+    {% if user.is_authenticated %}
+    <form method="POST" enctype="multipart/form-data" action="/products/show/{{that_one_product.id}}/" onSubmit="addToCart(event, this)">
+        <input type="hidden" name="variable" value="{{ that_one_product.id }}" class="product_id">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success btn-block">Kaufen</button>
+    </form>
+    {% endif %}
 
-{% if review_allowed %}
-<a href="{% url 'review_create' that_one_product.id %}">Write Reviews</a>
-{% endif %}
+    
+  </div>
 
-<br>
-<a href="{% url 'reviews_product' that_one_product.id %}">Show Reviews</a>
-<br><br>
-<a href="{% url 'product-list' %}">Back to all products</a>
-<br><br>
-{% if user_is_authorized %}
-    <button style="color: white;" type="button" class="btn btn-transparent" data-toggle="modal" data-target="#DeleteModal">
-        Produkt löschen
-    </button>
-    <a href={% url 'product-edit' that_one_product.id %}>Edit Product</a><br>
-{% endif %}
+
+
+
 {% endblock %}
 

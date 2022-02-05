@@ -12,5 +12,8 @@ class PaymentForm(forms.ModelForm):
         model = Payment
         fields = ['credit_card_number', 'expiry_date', 'amount']
         widgets = {
+            'credit_card_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'expiry_date': forms.TextInput(attrs={'class': 'form-control'}),
+            'amount': forms.TextInput(attrs={'class': 'form-control'}),
             'myuser': forms.HiddenInput(),
         }

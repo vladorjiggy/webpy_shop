@@ -17,6 +17,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.min.js"
     integrity="sha512-mULnawDVcCnsk9a4aG1QLZZ6rcce/jSzEGqUkeOLy0b6q0+T6syHrxlsAGH7ZVoqC93Pd0lBqd6WguPWih7VHA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/product-styles.css' %}">
 {% endblock %}
 
 
@@ -143,7 +144,7 @@
 
 
     {% if user.is_authenticated %}
-    <button type="button" class="btn btn-transparent btn-lg cart_button"><i class="fa fa-shopping-cart"></i> ({{request.user.count_shopping_cart_items }})</button>
+    <button type="button" style="color: white;" class="btn btn-transparent btn-lg cart_button"><i style="color: white;" class="fa fa-shopping-cart"></i> ({{request.user.count_shopping_cart_items }})</button>
 
     {% endif %}
 
