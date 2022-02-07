@@ -9,7 +9,7 @@
     <title>{% block title %}Homepage Title{% endblock %}</title>
     <script src="{% static 'js/app.js' %}" defer></script>  
 </head>
-<body style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 4fr 1fr; background-color: black">
+<body>
     {% block header %}{% endblock %}
     <header style="grid-row: 1;
    grid-column: span 3">
@@ -41,9 +41,18 @@
     </main>
     
     <footer>
-        <a style="color: #747474" href="">Contact Information</a>
-        <div>© Dice Yourself 2022</div>
-        <a style="color: #747474" href="">Impressum</a>
+        <div class="footer-items">
+            <a style="color: #747474; text-align: center;" href="">Contact Information</a>
+        </div>
+        <div class="footer-items">
+            <div>© Dice Yourself 2022</div>
+        </div>
+        <div class="footer-items">
+            <a style="color: #747474" href="">Impressum</a>
+        </div>
+        
+        
+        
     </footer>
 </body>
 </html>

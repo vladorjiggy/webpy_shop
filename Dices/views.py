@@ -25,91 +25,39 @@ def product_list(request, **kwargs):
 
     return render(request, 'product-list.html', context)
 
-
-'''
-class ProductListView(ListView):
-    model = Dice
-    context_object_name = 'all_products'
-    template_name = 'product-list.html'
-
-    
-    def get_context_data(self, **kwargs):
-        context = super(ProductListView, self).get_context_data(**kwargs)
-        return context
-
-'''
-
 def single_product(request, **kwargs):
     dice_id = kwargs['pk']
     that_one_product = Dice.objects.get(id=dice_id)
-    context = {'that_one_product': that_one_product}
+    ave = Review.reviews_average(that_one_product)
+    that_one_product.average_rating = ave[0]
+    that_one_product.count_ratings = ave[1]
+    context = {
+        'that_one_product': that_one_product,
+        'max_stars': [1,2,3,4,5]
+        }
     review_allowed = False
-    myuser = request.user
     
-    if myuser.is_anonymous:
-        user_is_authorized = False
-        review = []
-    else:
-        user_is_authorized = myuser.is_authorized()
-        review = Review.objects.filter(product_reviewed=kwargs['pk']).filter(user=myuser)
+    if not request.user.is_anonymous:
+        user_is_authorized = request.user.is_authorized()
+        review = Review.objects.filter(product_reviewed=kwargs['pk']).filter(user=request.user)
         if len(review) > 0:
             review_allowed = False
         else: 
             review_allowed = True
-    
-   
     
     context['review_allowed'] = review_allowed
     context['user_is_authorized'] = user_is_authorized
     
 
     if request.method == 'POST':
-        myuser = request.user
         product = Dice.objects.get(id=kwargs['pk'])
-        ShoppingCart.add_item(myuser, product)
+        ShoppingCart.add_item(request.user, product)
 
     if request.method == 'DELETE':
-        print('DELETE')
-        user = request.user
-        if user.is_staff == 1:
+        if request.user.is_staff == 1:
             Dice.objects.filter(id=dice_id).delete()
 
     return render(request, 'product-detail.html', context)
-
-'''
-class ProductDetailView(DetailView):
-    model = Dice
-    context_object_name = 'that_one_product' 
-    template_name = 'product-detail.html'
-    
-    def get_queryset(self, *args, **kwargs):
-        return Dice.objects.filter(id=self.kwargs['pk']) # evtl self
-
-    
-    
-    def form_valid(self, form):
-        # Add to shopping cart
-        if self.request.method == 'POST':
-            myuser = self.request.user
-            product = Dice.objects.filter(id=self.kwargs['pk'])
-            ShoppingCart.add_item(myuser, product)
-
-    def get_context_data(self, **kwargs):
-        context = super(ProductDetailView, self).get_context_data(**kwargs)
-        myuser = self.request.user
-        user_is_authorized = myuser.is_authorized()
-        review_allowed = 'True'
-        review = Review.objects.filter(product_reviewed=self.kwargs['pk']).filter(user=myuser)
-        print(review)
-        if len(review) > 0 | review:
-            review_allowed = 'False'
-        else: 
-            review_allowed = 'True'
-        context['review_allowed'] = review_allowed
-        context['reviews'] = review
-        context['user_is_authorized'] = user_is_authorized
-        return context
-'''
 
 class ProductCreateView(CreateView):
     model = Dice
@@ -119,10 +67,9 @@ class ProductCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductCreateView, self).get_context_data(**kwargs)
-        myuser = self.request.user
-        invert_op = getattr(self, "is_authorized", None)
-        if callable(invert_op):
-            user_is_authorized = myuser.is_authorized()
+        hasFunction = getattr(self, "is_authorized", None)
+        if callable(hasFunction):
+            user_is_authorized = self.request.user.is_authorized()
         else:
             user_is_authorized = False
         context['user_is_authorized'] = user_is_authorized
@@ -147,13 +94,6 @@ class ProductCreateView(CreateView):
         form.instance.superuser = self.request.user
         return super().form_valid(form)
 
-
-
-class ProductDeleteView(DeleteView):
-    model = Dice
-    success_url = reverse_lazy('product-list')
-    context_object_name = 'that_one_product'
-    template_name = 'product-confirm_delete.html'
 
 def product_delete(request, **kwargs):
     if request.method == 'DELETE':
@@ -193,12 +133,9 @@ def product_search(request):
         return render(request, 'product-search.html', context)
 
 def product_edit(request, pk: str):
-    product_id = pk
-    product = Dice.objects.get(id=product_id)
+    product = Dice.objects.get(id=pk)
     if request.method == 'POST':
         form = ProductEditForm(request.POST)
-        #print(form.data['image'])
-        
         product.name = form.data['name']
         product.description = form.data['description']
         product.colour = form.data['colour']
@@ -208,28 +145,13 @@ def product_edit(request, pk: str):
             product.image = request.FILES['image']
         if request.FILES.get('product_info', False):
             product.product_info = request.FILES['product_info']
-        
         product.save()
         return redirect('product-list')
 
     else:
         form = ProductEditForm(request.POST or None, instance=product)
-        user = request.user
         context = {'form': form,
                    'product': product,
-                   'user': user}
+                   'user': request.user
+                }
         return render(request, 'product-edit.html', context)
-
-
-def product_detail(request, **kwargs):
-    # print(kwargs)
-    product_id = kwargs['pk']
-    that_one_computer_in_my_function_based_view = Dice.objects.get(id=product_id)
-
-    # Add to shopping cart
-    if request.method == 'POST':
-        myuser = request.user
-        ShoppingCart.add_item(myuser, that_one_computer_in_my_function_based_view)
-
-    context = {'that_one_product': that_one_computer_in_my_function_based_view}
-    return render(request, 'product-detail.html', context)

@@ -54,6 +54,16 @@
         <div class="product_info_leftside">
             <p class="product_prize card-title">€{{ that_one_product.prize }}0</p>
             <p class="product_info_fontsize">{{ that_one_product.name }}</p>
+            <div class="stars">
+                {% for i in max_stars %}
+                        {% if that_one_product.average_rating >= i %}
+                            <i style="color: gold;" class="fas fa-star rating_stars"></i>
+                        {% else %}
+                            <i style="color: gold;" class="far fa-star rating_stars"></i>
+                        {% endif %}
+                        
+                    {% endfor %}
+            </div>
         </div>
         <div class="product_info_rightside">
             <p class="product_info_fontsize">Farbe: {{ that_one_product.colour }}</p>

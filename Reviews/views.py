@@ -9,7 +9,11 @@ import logging
 def review_list_1(request, **kwargs):
     dice_id = kwargs['pk']
     all_the_reviews = Review.objects.filter(product_reviewed=dice_id)
-    context = {'all_the_Reviews': all_the_reviews}
+    max_stars = ['1','2','3','4','5']
+    context = {
+        'all_the_Reviews': all_the_reviews,
+        'max_stars': max_stars
+    }
     return render(request, 'review-list.html', context)
 
 
@@ -68,7 +72,8 @@ def review_detail(request, **kwargs):
                'helpful_votes': that_one_review.get_helpful_count(),
                'not_helpful_votes': that_one_review.get_not_helpful_count(),
                'delete_review_allowed': delete_review_allowed,
-               'voting_allowed': voting_allowed
+               'voting_allowed': voting_allowed,
+               'max_stars': ['1','2','3','4','5']
                }
     if request.method == 'DELETE':
         if delete_review_allowed:

@@ -28,8 +28,6 @@ ul li {
     padding-left: 20px;
     padding-top: 15px;
     margin-bottom: 5px;
-    margin-left: 20%;
-    margin-right: 20%;
     box-sizing: border-box;
     border-radius: 5px 15px 5px 15px;
     background-color : #1b1b1b;
@@ -64,11 +62,7 @@ ul li {
     width: 30%;
 }
 
-footer{
-    align-content: center;
-    position: absolute;
-    top: 130%;
-} 
+
 .table{
     color: #CC3434 !important;
 }
@@ -77,4 +71,13 @@ footer{
     position: absolute;
     top: 5px;
     right: 10px;
+}
+.reviews_wrapper{
+    width: 50%;
+    margin: auto;
+}
+.rating{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

@@ -6,7 +6,6 @@
 
 {% block content %}
 <div id="product_list_wrapper">
-    <hr>
     <div class="searchform">
         <form method="POST" action="/products/search/">
 
@@ -32,12 +31,12 @@
             </select>
             {% csrf_token %}
             <button type="submit" class="btn btn-light"><i class="fa fa-search"></i></button>
-
+            <a href="/products/show">
+                <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
+            </a>
 
         </form>
-        <a href="/products/show">
-            <button type="button" class="btn btn-danger btn-block">Reset</button>
-        </a>
+        
     </div>
     <div id="product_list">
         {% for product in all_products %}
@@ -53,18 +52,22 @@
                         <p class="product_info_fontsize">Farbe: {{product.colour}}</p>
                         <p class="product_info_fontsize">{{product.get_sides_display}}</p>
 
-                        {% for i in max_stars %}
+                        
+                        
+                    </div>
+                    
+                    <p id="product_id" style="display: none;">{{product.id}}</p>
+
+                </div>
+                <div class="stars">
+                    {% for i in max_stars %}
                             {% if product.average_rating >= i %}
-                                <i style="color: gold;" class="fas fa-star"></i>
+                                <i style="color: gold;" class="fas fa-star rating_stars"></i>
                             {% else %}
-                                <i style="color: gold;" class="far fa-star"></i>
+                                <i style="color: gold;" class="far fa-star rating_stars"></i>
                             {% endif %}
                             
                         {% endfor %}
-                        
-                    </div>
-                    <p id="product_id" style="display: none;">{{product.id}}</p>
-
                 </div>
                 {% if user.is_authenticated %}
         <br>

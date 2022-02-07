@@ -4,12 +4,33 @@
 {% block title %}Payment{% endblock %}
 
 {% block content %}
-<h2>Payment</h2>
 
     {% if paid %}
-        Thank you for your payment.<br><br>
+        <div class="add_product_wrapper">
+            <div class="add_product">
+                <div>
+                    <p style="text-align: center;">Transaktion abgeschlossen</p>
+                    
+                    <hr>
+                    
+                </div>
+                
+            </div>
+        </div>
     {% elif shopping_cart_is_empty %}
-        Your shopping cart is empty. There is nothing to pay for.<br><br>
+        
+
+        <div class="add_product_wrapper">
+            <div class="add_product">
+                <div>
+                    <p style="text-align: center;">Einkaufswagen leer</p>
+                    
+                    <hr>
+                    
+                </div>
+                
+            </div>
+        </div>
     {% else %}
 
     <div class="add_product_wrapper">

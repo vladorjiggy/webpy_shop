@@ -1,16 +1,35 @@
 {% extends 'home.html' %}
-
+{% load static %}
 {% block title %}Reviews list{% endblock %}
 
 {% block content %}
-<h2 id="reviews">Reviews</h2>
+<div class="card" style="width: 50%; margin: auto;">
+    <div class="card-header">
+        Reviews
+    </div>
     <ul class="list-group list-group-flush">
-    {% for review in all_the_Reviews %}
-    <li class="list-group-item">
-        <a href="{% url 'review_detail' review.id %}"><b>{{ review.title }}</b></a><br>
-        <p>{{ review.rating }} Sterne</p>
-        {{ form.as_p }}
-    </li>
-    {% endfor %}
-    </ul>
+        {% for review in all_the_Reviews %}
+        <li class="list-group-item">
+            <div class="rating">
+                
+                <a href="{% url 'review_detail' review.id %}"><b>{{ review.title }}</b></a>
+                <div>
+                    {% for i in max_stars %}
+                        {% if review.rating >= i %}
+                            <i style="color: gold;" class="fas fa-star"></i>
+                        {% else %}
+                            <i style="color: gold;" class="far fa-star"></i>
+                        {% endif %}                
+                    {% endfor %}
+                </div>
+                
+            </div>
+            
+            {{ form.as_p }}
+        </li>
+        {% endfor %}
+        </ul>
+</div>
+
+    
 {% endblock %}

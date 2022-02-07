@@ -60,7 +60,7 @@
             </button>
         </a>
     </div>
-    <h2>Produktdetails</h2>
+    <h2>Details</h2>
 
     <table class="table">
     <tr>
@@ -69,7 +69,18 @@
     </tr>
     <tr>
         <td><b>Rating:</b></td>
-        <td>{{ that_one_Review.get_rating_display }}<br></td>
+        <td>
+            <div class="stars">
+                {% for i in max_stars %}
+                        {% if that_one_Review.rating >= i %}
+                            <i style="color: gold;" class="fas fa-star rating_stars"></i>
+                        {% else %}
+                            <i style="color: gold;" class="far fa-star rating_stars"></i>
+                        {% endif %}
+                        
+                    {% endfor %}
+            </div>
+        </td>
     </tr>
     <tr>
         <td><b>Text:</b></td>

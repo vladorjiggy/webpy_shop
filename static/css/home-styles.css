@@ -1,64 +1,71 @@
-footer{
-    display: flex; justify-content: space-around; align-items: end; grid-row: 6;
-   grid-column: span 3; position: fixed;
+footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    grid-row: 6;
+    grid-column: span 3;
     bottom: 0;
     right: 0;
-    left: 0;background-color: black;
+    left: 0;
+    background-color: black;
     padding: 20px;
+    position: fixed;
+    
 }
 
 body {
     background-color: black;
-     color: #CC3434;
-     margin: 20px;
- }
+    color: #CC3434;
+    margin: 0;
+}
 
- h1 {
-     color: #747474;
- }
+h1 {
+    color: #747474;
+}
 
- main {
-     margin: 50px;
- }
 
- header {
-     display: flex;
-     align-items: flex-start;
-     justify-content: space-between;
- }
+header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 120px;
+}
+main{
+    margin-bottom: 70px;
+}
 
- #logo {
-     width: 60px;
-     margin: 20px 0;
- }
+#logo {
+    width: 60px;
+    margin: 20px 0;
+}
 
- #login {
-     display: flex;
-     justify-content: center;
-     margin: 10px;
-     align-items: center;
- }
+#login {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    align-items: center;
+}
 
- #logout {
-     color: #CC3434;
- }
+#logout {
+    color: #CC3434;
+}
 
- #login>p {
-     margin-right: 10px;
- }
+#login>p {
+    margin-right: 10px;
+}
 
- #title {
-     margin-left: 20px;
-     color: #CC3434
- }
+#title {
+    margin-left: 20px;
+    color: #CC3434
+}
 
- #name_logo {
-     display: flex;
-     align-items: flex-end;
-     justify-content: center;
- }
+#name_logo {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
 
-.header_profile_img{
+.header_profile_img {
     width: 50px;
     height: 50px;
     background-size: cover;
@@ -75,17 +82,19 @@ body {
 
 }
 
-#list-link {
-    grid-column: 3 / 4;
-    grid-row: 5;
-    text-align: center;
-    margin: auto;
-}
 
 #button-list-link {
     text-align: center;
     margin: auto;
+    color: white;
+    background-color: #CC3434;
+    margin-top: 20px;
+    
+}
+
+#button-list-link:hover{
     color: #CC3434;
+    background-color: white;
 }
 
 #intro {
@@ -97,14 +106,29 @@ body {
     z-index: 1;
 }
 
-#grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+#aboveTheFold {
     background-image: url("../Dice/dice_home.jpg");
-    height: 90vh;
-    width: 90vw;
+    height: 78vh;
+    width: 100vw;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
+.aboveTheFold_content{
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.aboveTheFold_title{
+    color: rgba(255, 255, 255, 0.678);
+    margin: 10px 0;
+}
+.footer-items{
+    width: 33%;
+    text-align: center;
+}

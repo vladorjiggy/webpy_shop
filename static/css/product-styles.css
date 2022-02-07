@@ -123,3 +123,10 @@
     top: 5px;
     right: 10px;
 }
+.stars{
+    display: flex;
+    justify-content: space-evenly;
+}
+.rating_stars{
+    font-size: 30px;
+}

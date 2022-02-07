@@ -18,6 +18,7 @@
     integrity="sha512-mULnawDVcCnsk9a4aG1QLZZ6rcce/jSzEGqUkeOLy0b6q0+T6syHrxlsAGH7ZVoqC93Pd0lBqd6WguPWih7VHA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/product-styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/review-styles.css' %}">
 {% endblock %}
 
 
@@ -38,7 +39,9 @@
 
 
 <a href="{% url 'logout' %}">
-    <button type="button" id="logout" class="btn btn-light btn-block">Logout</button>
+    <button style="color: white;" type="button" class="btn btn-transparent">
+        Logout
+    </button>
 </a>
 {% endblock %}
 {% else %}
@@ -164,12 +167,14 @@
 
 {% block content %}
 
-<div id="grid" class="border border-danger rounded">
-    <h3 id="intro">GET OUR NEWEST DICE - BOLDER, BIGGER, BETTER<br><!-- This collection will take your game to a whole new level!--></h3>
-    <!--img id="home-pic" src="{% static 'Dice/dice_home.jpg' %}" class="border border-dark rounded" alt=""-->
-    <a id="list-link" href="{% url 'product-list' %}">
-        <button id="button-list-link" type="button" class="btn btn-outline-light btn-transparent btn-lg">See Our Dice</button>
-    </a>
+<div id="aboveTheFold">
+    <div class="aboveTheFold_content">
+        <h1 class="aboveTheFold_title">GET OUR NEWEST DICE</h1>
+        <h3 class="aboveTheFold_title">BOLDER, BIGGER, BETTER<br></h3>    
+        <a id="list-link" href="{% url 'product-list' %}">
+            <button id="button-list-link" type="button" class="btn btn-transparent btn-lg">Get some Dice</button>
+        </a>
+    </div>
 </div>
 
 {% endblock %}
